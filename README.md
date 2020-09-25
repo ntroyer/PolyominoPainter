@@ -1,6 +1,6 @@
-### Polyomino Grid
+### Polyomino Painter
 
-Polyomino Grid using the MERN stack for polyomino games and projects.
+A painting app that uses polyominos.
 
 ## Dev instructions
 
