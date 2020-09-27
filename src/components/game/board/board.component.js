@@ -27,16 +27,14 @@ export default class Board extends Component {
     }
 
     assignSquaresToPlayer(player) {
-        let currentPlayerSquares = this.state.playerSquares;
+        let currentPlayerSquares = this.props.playerSquares;
 
         this.state.currentComputedPolyo.map((item) => {
             currentPlayerSquares[item[0] + ',' + item[1]] = player;
             return true;
         });
 
-        this.setState(state => ({
-            playerSquares: currentPlayerSquares
-        }));
+        this.props.onPlayerSquaresChange(currentPlayerSquares);
     }
 
     computePolyoCoords(row, col) {
@@ -47,8 +45,8 @@ export default class Board extends Component {
 
     getSquareAssignment(row, col) {
         const rowColKey = row + ',' + col;
-        if (this.state.playerSquares[rowColKey] && this.state.playerSquares[rowColKey] !== 'undefined') {
-            return this.state.playerSquares[rowColKey];
+        if (this.props.playerSquares[rowColKey] && this.props.playerSquares[rowColKey] !== 'undefined') {
+            return this.props.playerSquares[rowColKey];
         }
 
         return 0;

@@ -4,6 +4,7 @@ import { MdRotateLeft, MdRotateRight, MdFlip } from 'react-icons/md';
 import ReactTooltip from "react-tooltip";
 import PolyominoPreview from './polyomino-preview/polyomino-preview.component';
 import PolyominoSelector from './polyomino-selector/polyomino-selector';
+import Canvas from './canvas/canvas.component';
 
 const RotateLeft = styled(MdRotateLeft)`
     cursor: pointer;
@@ -115,6 +116,7 @@ export default class PlayerTest extends Component {
                     <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />
                     <FlipY data-tip="Flip Vertically" onClick={this.flipY} />
                 </div>
+                <Canvas playerSquares={this.props.playerSquares}/>
                 <ReactTooltip />
             </div>
         )
