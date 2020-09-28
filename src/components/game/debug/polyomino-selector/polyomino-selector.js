@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import SelectablePolyomino from './selectable-polyomino';
+import { polyominos } from '../../../../data/polyominos';
 
 const SelectorDiv = styled.div`
     display: flex;
@@ -15,48 +16,7 @@ export default class PolyominoSelector extends Component {
         super();
 
         this.state = {
-            polyominos: [
-                {
-                    name: 'lthing',
-                    data: [
-                        [-1, 1],
-                        [0, 1],
-                        [0, -1],
-                        [1, 0],
-                        [2, 0]
-                    ]
-                },
-                {
-                    name: 'tshape',
-                    data: [
-                        [-1, -1],
-                        [-1, 0],
-                        [-1, 1],
-                        [1, 0],
-                        [2, 0]
-                    ]
-                },
-                {
-                    name: 'stairs',
-                    data: [
-                        [-1, -1],
-                        [0, -1],
-                        [1, 0],
-                        [1, 1],
-                        [2, 1]
-                    ]
-                },
-                {
-                    name: 'doublel',
-                    data: [
-                        [-1, -1],
-                        [-1, 0],
-                        [1, 0],
-                        [2, 0],
-                        [2, 1]
-                    ]
-                }
-            ]
+            polyominos: polyominos
         }
     }
 

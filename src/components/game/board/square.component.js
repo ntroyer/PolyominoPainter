@@ -29,7 +29,6 @@ export default class Square extends Component {
                 onMouseEnter={() => this.props.onSetCurrentCenter(this.props.row, this.props.col)}
                 onClick={() => this.props.assignColorToSquares(this.props.currentColor)}
                 >
-                {this.props.row}, {this.props.col}
             </BoardSquare>
         )
     }

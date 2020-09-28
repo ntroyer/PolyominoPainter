@@ -6,6 +6,7 @@ import PolyominoPreview from './polyomino-preview/polyomino-preview.component';
 import PolyominoSelector from './polyomino-selector/polyomino-selector';
 import Canvas from './canvas/canvas.component';
 import PrimaryPicker from './canvas/primary-colorpicker.component';
+import RandomPolyomino from './random-polyomino/random-polyomino.component';
 
 const RotateLeft = styled(MdRotateLeft)`
     cursor: pointer;
@@ -109,7 +110,7 @@ export default class PlayerTest extends Component {
                         onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
                 <div>
-                    <button>Get Random Polyomino</button>
+                    <RandomPolyomino onPolyoChange={this.props.onPolyoChange}/>
                     <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
                     <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
                     <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />

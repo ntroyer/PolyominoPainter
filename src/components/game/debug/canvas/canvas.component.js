@@ -16,7 +16,6 @@ export default class Canvas extends Component {
     }
 
     drawCanvas() {
-        // this can be redrawn, but it's based on the color of the PLAYER SQUARE, not on the CURRENT COLOR
         const playerSquares = this.props.playerSquares;
         const pixelWidth = 10;
         const pixelHeight = 10;
@@ -37,7 +36,7 @@ export default class Canvas extends Component {
 
     render() {
         return (
-            <canvas width="200" height="200" ref={this.canvasRef}></canvas>
+            <canvas width="200" height="200" ref={this.canvasRef} style={{border: "2px solid"}}></canvas>
         )
     }
 }
