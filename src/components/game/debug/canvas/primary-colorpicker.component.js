@@ -14,10 +14,14 @@ export default class PrimaryPicker extends Component {
 
     handleColorChange(color, event) {
         this.setState({ color: color.hex })
+
+        this.props.onColorChange(color.hex);
     }
 
     handleChangeComplete(color) {
-        this.setState({ color: color.hex})
+        this.setState({ color: color.hex })
+
+        this.props.onColorChange(color.hex);
     }
 
     render() {

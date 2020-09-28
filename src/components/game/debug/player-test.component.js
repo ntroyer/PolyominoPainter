@@ -93,7 +93,7 @@ export default class PlayerTest extends Component {
                 <div>
                     Primary color
                 </div>
-                <PrimaryPicker />
+                <PrimaryPicker onColorChange={this.props.onPrimaryColorChange} />
                 <div>
                     Polyomino Controls
                 </div>
