@@ -17,9 +17,10 @@ export default class Canvas extends Component {
 
     drawCanvas() {
         const playerSquares = this.props.playerSquares;
-        const pixelWidth = 10;
-        const pixelHeight = 10;
+        const pixelWidth = 200 / this.props.boardX;
+        const pixelHeight = 200 / this.props.boardY;
         const context = this.canvasRef.current.getContext("2d");
+        context.clearRect(0, 0, 200, 200);
 
         Object.keys(playerSquares).map((index) => {
             const splitIndex = index.split(',');

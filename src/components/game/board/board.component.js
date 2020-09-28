@@ -90,10 +90,14 @@ export default class Board extends Component {
         }))
     }
 
+    getGridWidth() {
+        return process.env.REACT_APP_BOARD_SQUARE_WIDTH * this.props.boardX;
+    }
+
     render() {
         return (
             <Grid>
-                <tbody onMouseLeave={() => this.resetCurrentPolyo()}>
+                <tbody onMouseLeave={() => this.resetCurrentPolyo()} style={{width: this.getGridWidth(), display: "block"}}>
                     {
                         [...Array(this.props.boardY)].map((_, row) => this.renderRow(row))
                     }

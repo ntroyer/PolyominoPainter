@@ -20,13 +20,16 @@ export default class NewGame extends Component {
                 [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
             ],
             primaryColor: "blue",
-            playerSquares: []
+            playerSquares: [],
+            xSquares: 20,
+            ySquares: 20
         }
 
         this.changePlayer = this.changePlayer.bind(this);
         this.changePrimaryColor = this.changePrimaryColor.bind(this);
         this.changePolyo = this.changePolyo.bind(this);
         this.changePlayerSquares = this.changePlayerSquares.bind(this);
+        this.changeBoardSize = this.changeBoardSize.bind(this);
     }
 
     changePlayer(player) {
@@ -53,6 +56,13 @@ export default class NewGame extends Component {
         }));
     }
 
+    changeBoardSize(x, y) {
+        this.setState(state => ({
+            xSquares: x,
+            ySquares: y
+        }));
+    }
+
     render() {
         return (
             <Game>
@@ -64,6 +74,9 @@ export default class NewGame extends Component {
                     onPrimaryColorChange={this.changePrimaryColor}
                     onPlayerChange={this.changePlayer} 
                     onPolyoChange={this.changePolyo}
+                    onBoardSizeChange={this.changeBoardSize}
+                    boardX={this.state.xSquares}
+                    boardY={this.state.ySquares}
                 />
                 <Board 
                     currentPrimaryColor={this.state.primaryColor}
@@ -71,8 +84,8 @@ export default class NewGame extends Component {
                     currentPolyo={this.state.currentPolyo}
                     playerSquares={this.state.playerSquares}
                     onPlayerSquaresChange={this.changePlayerSquares}
-                    boardX={20}
-                    boardY={20}
+                    boardX={this.state.xSquares}
+                    boardY={this.state.ySquares}
                 />
             </Game>
         )
