@@ -5,6 +5,7 @@ import ReactTooltip from "react-tooltip";
 import PolyominoPreview from './polyomino-preview/polyomino-preview.component';
 import PolyominoSelector from './polyomino-selector/polyomino-selector';
 import Canvas from './canvas/canvas.component';
+import PrimaryPicker from './canvas/primary-colorpicker.component';
 
 const RotateLeft = styled(MdRotateLeft)`
     cursor: pointer;
@@ -90,12 +91,9 @@ export default class PlayerTest extends Component {
         return (
             <div>
                 <div>
-                    Current player: Player {this.props.currentPlayer}
+                    Primary color
                 </div>
-                <button onClick={() => this.props.onPlayerChange(1)}>Player 1</button>
-                <button onClick={() => this.props.onPlayerChange(2)}>Player 2</button>
-                <button onClick={() => this.props.onPlayerChange(3)}>Player 3</button>
-                <button onClick={() => this.props.onPlayerChange(4)}>Player 4</button>
+                <PrimaryPicker />
                 <div>
                     Polyomino Controls
                 </div>
