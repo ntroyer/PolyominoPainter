@@ -26,11 +26,11 @@ export default class Board extends Component {
         }));
     }
 
-    assignSquaresToPlayer(player) {
+    assignColorToSquares(color) {
         let currentPlayerSquares = this.props.playerSquares;
 
         this.state.currentComputedPolyo.map((item) => {
-            currentPlayerSquares[item[0] + ',' + item[1]] = player;
+            currentPlayerSquares[item[0] + ',' + item[1]] = color;
             return true;
         });
 
@@ -64,11 +64,11 @@ export default class Board extends Component {
                 key={key}
                 row={row}
                 col={col}
-                currentPlayer={this.props.currentPlayer}
-                assignedPlayer={this.getSquareAssignment(row, col)}
+                currentColor={this.props.currentPrimaryColor}
+                assignedColor={this.getSquareAssignment(row, col)}
                 isBeingChecked={this.isSquareBeingChecked(row, col)}
                 onSetCurrentCenter={() => this.setCurrentCenter(row, col)}
-                assignSquaresToPlayer={() => this.assignSquaresToPlayer(this.props.currentPlayer)}
+                assignColorToSquares={() => this.assignColorToSquares(this.props.currentPrimaryColor)}
             />
         );
     }

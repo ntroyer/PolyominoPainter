@@ -57,6 +57,7 @@ export default class NewGame extends Component {
         return (
             <Game>
                 <PlayerTest 
+                    currentPrimaryColor={this.state.primaryColor}
                     currentPlayer={this.state.currentPlayer} 
                     currentPolyo={this.state.currentPolyo}
                     playerSquares={this.state.playerSquares}
@@ -65,6 +66,7 @@ export default class NewGame extends Component {
                     onPolyoChange={this.changePolyo}
                 />
                 <Board 
+                    currentPrimaryColor={this.state.primaryColor}
                     currentPlayer={this.state.currentPlayer}
                     currentPolyo={this.state.currentPolyo}
                     playerSquares={this.state.playerSquares}

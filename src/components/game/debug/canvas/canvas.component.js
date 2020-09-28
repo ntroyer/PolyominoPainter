@@ -16,6 +16,7 @@ export default class Canvas extends Component {
     }
 
     drawCanvas() {
+        // this can be redrawn, but it's based on the color of the PLAYER SQUARE, not on the CURRENT COLOR
         const playerSquares = this.props.playerSquares;
         const pixelWidth = 10;
         const pixelHeight = 10;
@@ -27,7 +28,7 @@ export default class Canvas extends Component {
             const x = Number(splitIndex[1]);
 
             context.beginPath();
-            context.fillStyle = "black";
+            context.fillStyle = playerSquares[index];
             context.fillRect(x * pixelWidth, y * pixelWidth, pixelWidth, pixelHeight);
             context.fill();
             return true;

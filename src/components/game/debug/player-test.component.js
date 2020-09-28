@@ -93,18 +93,19 @@ export default class PlayerTest extends Component {
                 <div>
                     Primary color
                 </div>
-                <PrimaryPicker onColorChange={this.props.onPrimaryColorChange} />
+                <PrimaryPicker 
+                    onColorChange={this.props.onPrimaryColorChange} />
                 <div>
                     Polyomino Controls
                 </div>
                 <PolyominoPreview 
-                    currentPlayer={this.props.currentPlayer}
+                    currentPrimaryColor={this.props.currentPrimaryColor}
                     currentPolyo={this.props.currentPolyo}
                     boardX={5} 
                     boardY={5} />
                 <PolyominoSelectorContainer>
                     <PolyominoSelector 
-                        currentPlayer={this.props.currentPlayer}
+                        currentPrimaryColor={this.props.currentPrimaryColor}
                         onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
                 <div>
@@ -114,7 +115,8 @@ export default class PlayerTest extends Component {
                     <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />
                     <FlipY data-tip="Flip Vertically" onClick={this.flipY} />
                 </div>
-                <Canvas playerSquares={this.props.playerSquares}/>
+                <Canvas 
+                    playerSquares={this.props.playerSquares} />
                 <ReactTooltip />
             </div>
         )

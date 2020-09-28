@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const SelectablePolyominoBlock = styled.td`
     width: ${props => (props.squareWidth)}px;
     height: ${props => (props.squareHeight)}px;
-    background: ${props => (props.isAssigned ? props.currentPlayerColor : "white")};
+    background: ${props => (props.isAssigned ? props.currentColor : "white")};
     text-align: center;
     border: ${props => (props.isAssigned ? "2px solid black" : "0")};
 `;
@@ -15,21 +15,6 @@ const PolyominoGrid = styled.table`
 `;
 
 export default class SelectablePolyomino extends Component {
-    getPlayerColor(player) {
-        switch(player) {
-            case 1:
-                return "blue";
-            case 2:
-                return "orange";
-            case 3:
-                return "green";
-            case 4:
-                return "purple";
-            default:
-                return "white";
-        }
-    }
-
     isSquareInCurrentPolyo(row, col) {
         if (row === 0 && col === 0) {
             return true;
@@ -53,7 +38,7 @@ export default class SelectablePolyomino extends Component {
                 col={col}
                 squareWidth={20}
                 squareHeight={20}
-                currentPlayerColor={this.getPlayerColor(this.props.currentPlayer)}
+                currentColor={this.props.currentPrimaryColor}
                 isAssigned={this.isSquareInCurrentPolyo(row, col)}
             />
         );

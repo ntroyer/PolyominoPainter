@@ -61,7 +61,6 @@ export default class PolyominoSelector extends Component {
     }
 
     setCurrentPolyomino(polyo) {
-        console.log('setting current polyomino...', polyo);
         this.props.onPolyoChange(polyo);
     }
 
@@ -73,7 +72,7 @@ export default class PolyominoSelector extends Component {
                         <SelectablePolyomino 
                             key={'selectable_' + polyo.name}
                             setCurrentPolyomino={() => this.setCurrentPolyomino(polyo.data)}
-                            currentPlayer={this.props.currentPlayer}
+                            currentPrimaryColor={this.props.currentPrimaryColor}
                             polyomino={polyo.data}
                         />
                     ))
