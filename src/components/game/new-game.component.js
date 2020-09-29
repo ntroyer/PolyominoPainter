@@ -10,6 +10,11 @@ const Game = styled.div`
     justify-content: center;
 `;
 
+const TableDiv = styled.div`
+    flex: 0 0 100em;
+    margin: 10px auto;
+`;
+
 export default class NewGame extends Component {
     constructor(props) {
         super();
@@ -78,7 +83,7 @@ export default class NewGame extends Component {
                     boardX={this.state.xSquares}
                     boardY={this.state.ySquares}
                 />
-                <div style={{flex: "0 0 100em"}}>
+                <TableDiv>
                     <Board 
                         currentPrimaryColor={this.state.primaryColor}
                         currentPlayer={this.state.currentPlayer}
@@ -88,7 +93,7 @@ export default class NewGame extends Component {
                         boardX={this.state.xSquares}
                         boardY={this.state.ySquares}
                     />
-                </div>
+                </TableDiv>
                 <div style={{flex: "1"}}>Image Preview</div>
             </Game>
         )

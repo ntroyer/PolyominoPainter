@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { SliderPicker } from 'react-color';
+
+const StyledPicker = styled(SliderPicker)`
+    margin: 10px auto;
+`;
 
 export default class PrimaryPicker extends Component {
     constructor(props) {
@@ -26,7 +31,7 @@ export default class PrimaryPicker extends Component {
 
     render() {
         return (
-            <SliderPicker 
+            <StyledPicker 
                 color={this.state.color} 
                 onChange={this.handleColorChange} 
                 onChangeComplete={this.handleChangeComplete} />

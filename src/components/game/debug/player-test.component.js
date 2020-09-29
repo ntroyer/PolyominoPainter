@@ -38,6 +38,16 @@ const PolyominoSelectorContainer = styled.div`
     padding-top: 10px;
 `;
 
+const PolyominoMovementControls = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 10px auto;
+`;
+
+const Controls = styled.div`
+    margin: 10px;
+`;
+
 export default class PlayerTest extends Component {
     constructor(props) {
         super();
@@ -112,7 +122,7 @@ export default class PlayerTest extends Component {
 
     render() {
         return (
-            <div style={{flex: "1"}}>
+            <Controls>
                 <h1>
                     Polyomino Controls
                 </h1>
@@ -131,7 +141,7 @@ export default class PlayerTest extends Component {
                         currentPrimaryColor={this.props.currentPrimaryColor}
                         onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
-                <div>
+                <PolyominoMovementControls>
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange}/>
                     <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
                     <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
@@ -139,13 +149,13 @@ export default class PlayerTest extends Component {
                     <FlipY data-tip="Flip Vertically" onClick={this.flipY} />
                     <IncreaseGrid data-tip="Increase Grid Size (max 20)" onClick={this.increaseGrid} />
                     <DecreaseGrid data-tip="Decrease Grid Size (min 10)" onClick={this.decreaseGrid} />
-                </div>
+                </PolyominoMovementControls>
                 <Canvas 
                     playerSquares={this.props.playerSquares}
                     boardX={this.props.boardX}
                     boardY={this.props.boardY} />
                 <ReactTooltip />
-            </div>
+            </Controls>
         )
     }
 }
