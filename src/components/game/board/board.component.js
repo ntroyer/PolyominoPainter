@@ -15,16 +15,23 @@ export default class Board extends Component {
 
         this.state = {
             currentComputedPolyo: [-1, -1],
-            playerSquares: []
+            playerSquares: [],
+            isMouseDown: false
         }
 
         this.setCurrentCenter = this.setCurrentCenter.bind(this);
+        this.mouseIsDown = this.mouseIsDown.bind(this);
+        this.mouseIsUp = this.mouseIsUp.bind(this);
     }
 
     setCurrentCenter(row, col) {
         this.setState(state => ({
             currentComputedPolyo: this.computePolyoCoords(row, col)
         }));
+
+        if (this.state.isMouseDown) {
+            this.assignColorToSquares(this.props.currentPrimaryColor)
+        }
     }
 
     assignColorToSquares(color) {
@@ -58,6 +65,18 @@ export default class Board extends Component {
         return (this.state.currentComputedPolyo.some(item => (JSON.stringify(item) === stringifiedCoords)));
     }
 
+    mouseIsDown() {
+        this.setState(state => ({
+            isMouseDown: true
+        }));
+    }
+
+    mouseIsUp() {
+        this.setState(state => ({
+            isMouseDown: false
+        }));
+    }
+
     renderSquare(row, col) {
         const key = 'square' + row + col;
         return (
@@ -70,6 +89,8 @@ export default class Board extends Component {
                 isBeingChecked={this.isSquareBeingChecked(row, col)}
                 onSetCurrentCenter={() => this.setCurrentCenter(row, col)}
                 assignColorToSquares={() => this.assignColorToSquares(this.props.currentPrimaryColor)}
+                mouseIsUp={this.mouseIsUp}
+                mouseIsDown={this.mouseIsDown}
             />
         );
     }
