@@ -26,8 +26,8 @@ export default class NewGame extends Component {
             ],
             primaryColor: "blue",
             playerSquares: [],
-            xSquares: 20,
-            ySquares: 20
+            xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
+            ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y)
         }
 
         this.changePlayer = this.changePlayer.bind(this);
