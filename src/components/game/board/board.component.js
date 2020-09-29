@@ -4,6 +4,7 @@ import Square from './square.component';
 
 const Grid = styled.table`
     border-collapse: collapse;
+    margin: auto;
 `;
 
 export default class Board extends Component {

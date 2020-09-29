@@ -112,15 +112,15 @@ export default class PlayerTest extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{flex: "1"}}>
+                <h1>
+                    Polyomino Controls
+                </h1>
                 <div>
                     Primary color
                 </div>
                 <PrimaryPicker 
                     onColorChange={this.props.onPrimaryColorChange} />
-                <div>
-                    Polyomino Controls
-                </div>
                 <PolyominoPreview 
                     currentPrimaryColor={this.props.currentPrimaryColor}
                     currentPolyo={this.props.currentPolyo}

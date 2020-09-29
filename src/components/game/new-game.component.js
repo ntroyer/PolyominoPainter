@@ -78,15 +78,18 @@ export default class NewGame extends Component {
                     boardX={this.state.xSquares}
                     boardY={this.state.ySquares}
                 />
-                <Board 
-                    currentPrimaryColor={this.state.primaryColor}
-                    currentPlayer={this.state.currentPlayer}
-                    currentPolyo={this.state.currentPolyo}
-                    playerSquares={this.state.playerSquares}
-                    onPlayerSquaresChange={this.changePlayerSquares}
-                    boardX={this.state.xSquares}
-                    boardY={this.state.ySquares}
-                />
+                <div style={{flex: "0 0 100em"}}>
+                    <Board 
+                        currentPrimaryColor={this.state.primaryColor}
+                        currentPlayer={this.state.currentPlayer}
+                        currentPolyo={this.state.currentPolyo}
+                        playerSquares={this.state.playerSquares}
+                        onPlayerSquaresChange={this.changePlayerSquares}
+                        boardX={this.state.xSquares}
+                        boardY={this.state.ySquares}
+                    />
+                </div>
+                <div style={{flex: "1"}}>Image Preview</div>
             </Game>
         )
     }
