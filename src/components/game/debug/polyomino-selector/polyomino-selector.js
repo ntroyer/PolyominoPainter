@@ -8,7 +8,6 @@ const SelectorDiv = styled.div`
     height: 120px;
     width: 300px;
     outline: 2px solid black;
-    overflow-x: scroll;
 `;
 
 export default class PolyominoSelector extends Component {
@@ -16,12 +15,28 @@ export default class PolyominoSelector extends Component {
         super();
 
         this.state = {
-            polyominos: polyominos
+            polyominos: this.shufflePolyominos().slice(0, 3)
         }
     }
 
     setCurrentPolyomino(polyo) {
         this.props.onPolyoChange(polyo);
+    }
+
+    shufflePolyominos() {
+        let shuffledPolyominos = polyominos;
+        let currentIndex = polyominos.length, tempValue, randomIndex;
+
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            tempValue = shuffledPolyominos[currentIndex];
+            shuffledPolyominos[currentIndex] = shuffledPolyominos[randomIndex];
+            shuffledPolyominos[randomIndex] = tempValue;
+        }
+
+        return shuffledPolyominos;
     }
 
     render() {
