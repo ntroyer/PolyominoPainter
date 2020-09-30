@@ -17,7 +17,7 @@ const RotateRight = styled(MdRotateRight)`
 `;
 
 const FlipX = styled(MdFlip)`
-    rotate: 90deg;
+    transform: rotate(90deg);
     cursor: pointer;
 `;
 

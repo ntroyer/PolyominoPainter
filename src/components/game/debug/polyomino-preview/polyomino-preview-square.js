@@ -7,6 +7,7 @@ const PreviewSquare = styled.td`
     background: ${props => (props.isAssigned ? props.currentColor : "white")};
     text-align: center;
     border: 2px solid black;
+    cursor: pointer;
 
     &.is-center {
         outline-color: red;
