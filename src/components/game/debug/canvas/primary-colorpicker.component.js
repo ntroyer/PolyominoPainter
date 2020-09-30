@@ -9,6 +9,7 @@ const StyledPicker = styled(SliderPicker)`
 export default class PrimaryPicker extends Component {
     constructor(props) {
         super();
+        
         this.state = {
             color: 'blue'
         }
@@ -18,13 +19,17 @@ export default class PrimaryPicker extends Component {
     }
 
     handleColorChange(color, event) {
-        this.setState({ color: color.hex })
+        this.setState({ 
+            color: color.hex 
+        });
 
         this.props.onColorChange(color.hex);
     }
 
     handleChangeComplete(color) {
-        this.setState({ color: color.hex })
+        this.setState({ 
+            color: color.hex 
+        });
 
         this.props.onColorChange(color.hex);
     }

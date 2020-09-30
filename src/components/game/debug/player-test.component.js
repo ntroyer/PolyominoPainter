@@ -58,6 +58,8 @@ export default class PlayerTest extends Component {
         this.flipY = this.flipY.bind(this);
         this.increaseGrid = this.increaseGrid.bind(this);
         this.decreaseGrid = this.decreaseGrid.bind(this);
+        this.clearCanvas = this.clearCanvas.bind(this);
+        this.clearPolyomino = this.clearPolyomino.bind(this);
     }
 
     rotateLeft() {
@@ -120,6 +122,14 @@ export default class PlayerTest extends Component {
         }
     }
 
+    clearCanvas() {
+        this.props.onPlayerSquaresChange([]);
+    }
+
+    clearPolyomino() {
+        this.props.onPolyoChange([]);
+    }
+
     render() {
         return (
             <Controls>
@@ -134,6 +144,7 @@ export default class PlayerTest extends Component {
                 <PolyominoPreview 
                     currentPrimaryColor={this.props.currentPrimaryColor}
                     currentPolyo={this.props.currentPolyo}
+                    onPolyoChange={this.props.onPolyoChange}
                     boardX={5} 
                     boardY={5} />
                 <PolyominoSelectorContainer>
@@ -142,7 +153,9 @@ export default class PlayerTest extends Component {
                         onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
                 <PolyominoMovementControls>
-                    <RandomPolyomino onPolyoChange={this.props.onPolyoChange}/>
+                    <RandomPolyomino onPolyoChange={this.props.onPolyoChange} />
+                    <button onClick={this.clearCanvas}>Clear Canvas</button>
+                    <button onClick={this.clearPolyomino}>Clear Polyomino</button>
                     <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
                     <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
                     <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />

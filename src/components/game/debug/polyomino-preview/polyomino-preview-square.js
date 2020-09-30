@@ -24,7 +24,8 @@ export default class PolyominoPreviewSquare extends Component {
                 squareHeight={process.env.REACT_APP_PREVIEW_SQUARE_HEIGHT}
                 className={this.props.isCenter ? "is-center" : ""}
                 currentColor={this.props.currentPrimaryColor}
-                isAssigned={this.props.isAssigned} />
+                isAssigned={this.props.isAssigned} 
+                onClick={() => this.props.onPolyominoUpdate()} />
         )
     }
 }

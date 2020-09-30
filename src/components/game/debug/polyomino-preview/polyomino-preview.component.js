@@ -24,6 +24,23 @@ export default class PolyominoPreview extends Component {
         return (row === 0 && col === 0);
     }
 
+    toggleSquareInCurrentPolyo(row, col) {
+        let polyo = this.props.currentPolyo;
+        let foundNum = -1;
+
+        this.props.currentPolyo.map((element, key) => {
+            if (element[0] == row && element[1] == col) {
+                foundNum = key;
+            }
+        });
+        if (foundNum <= -1) {
+            polyo.push([row, col]);
+        } else {
+            polyo.splice(foundNum, 1);
+        }
+        this.props.onPolyoChange(polyo);
+    }
+
     renderSquare(row, col) {
         row = row-2;
         col = col-2;
@@ -36,6 +53,7 @@ export default class PolyominoPreview extends Component {
                 currentPrimaryColor={this.props.currentPrimaryColor}
                 isAssigned={this.isSquareInCurrentPolyo(row, col)}
                 isCenter={this.isSquareCenter(row, col)}
+                onPolyominoUpdate={() => this.toggleSquareInCurrentPolyo(row, col)}
             />
         );
     }

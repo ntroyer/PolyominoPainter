@@ -57,13 +57,14 @@ export default class SelectablePolyomino extends Component {
 
     render() {
         return (
-                <PolyominoGrid onClick={() => this.props.setCurrentPolyomino(this.props.polyomino)}>
-                    <tbody>
-                    {
-                        [...Array(5)].map((_, row) => this.renderRow(row))
-                    }
-                    </tbody>
-                </PolyominoGrid>
+            <PolyominoGrid 
+                onClick={() => this.props.setCurrentPolyomino(this.props.polyomino)}>
+                <tbody>
+                {
+                    [...Array(5)].map((_, row) => this.renderRow(row))
+                }
+                </tbody>
+            </PolyominoGrid>
         )
     }
 }

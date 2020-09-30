@@ -78,6 +78,7 @@ export default class NewGame extends Component {
                     playerSquares={this.state.playerSquares}
                     onPrimaryColorChange={this.changePrimaryColor}
                     onPlayerChange={this.changePlayer} 
+                    onPlayerSquaresChange={this.changePlayerSquares}
                     onPolyoChange={this.changePolyo}
                     onBoardSizeChange={this.changeBoardSize}
                     boardX={this.state.xSquares}
