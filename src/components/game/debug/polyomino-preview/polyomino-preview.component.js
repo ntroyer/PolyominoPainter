@@ -29,9 +29,10 @@ export default class PolyominoPreview extends Component {
         let foundNum = -1;
 
         this.props.currentPolyo.map((element, key) => {
-            if (element[0] == row && element[1] == col) {
+            if (element[0] === row && element[1] === col) {
                 foundNum = key;
             }
+            return true;
         });
         if (foundNum <= -1) {
             polyo.push([row, col]);

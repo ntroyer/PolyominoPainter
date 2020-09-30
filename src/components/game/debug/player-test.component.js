@@ -7,6 +7,7 @@ import PolyominoSelector from './polyomino-selector/polyomino-selector';
 import Canvas from './canvas/canvas.component';
 import PrimaryPicker from './canvas/primary-colorpicker.component';
 import RandomPolyomino from './random-polyomino/random-polyomino.component';
+import ToggleEraser from './eraser/toggle-eraser.component';
 
 const RotateLeft = styled(MdRotateLeft)`
     cursor: pointer;
@@ -137,7 +138,7 @@ export default class PlayerTest extends Component {
                     Polyomino Controls
                 </h1>
                 <div>
-                    Primary color
+                    Color
                 </div>
                 <PrimaryPicker 
                     onColorChange={this.props.onPrimaryColorChange} />
@@ -153,9 +154,12 @@ export default class PlayerTest extends Component {
                         onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
                 <PolyominoMovementControls>
+                    <ToggleEraser onToggleEraser={this.props.onToggleEraser} /> 
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} />
                     <button onClick={this.clearCanvas}>Clear Canvas</button>
                     <button onClick={this.clearPolyomino}>Clear Polyomino</button>
+                </PolyominoMovementControls>
+                <PolyominoMovementControls>
                     <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
                     <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
                     <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />

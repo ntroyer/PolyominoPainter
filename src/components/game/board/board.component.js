@@ -13,9 +13,9 @@ export default class Board extends Component {
     constructor(props) {
         super();
 
+        // todo - isMouseDown should probably be moved to the main component
         this.state = {
             currentComputedPolyo: [-1, -1],
-            playerSquares: [],
             isMouseDown: false
         }
 
@@ -34,7 +34,24 @@ export default class Board extends Component {
         }
     }
 
+    eraseSquares() {
+        let currentPlayerSquares = this.props.playerSquares;
+
+        this.state.currentComputedPolyo.map((item) => {
+            let squareKey = item[0] + ',' + item[1];
+            delete currentPlayerSquares[squareKey];
+            return true;
+        });
+
+        this.props.onPlayerSquaresChange(currentPlayerSquares);
+    }
+
     assignColorToSquares(color) {
+        if (this.props.isEraserOn) {
+            this.eraseSquares();
+            return;
+        }
+
         let currentPlayerSquares = this.props.playerSquares;
 
         this.state.currentComputedPolyo.map((item) => {

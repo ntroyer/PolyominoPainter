@@ -27,7 +27,8 @@ export default class NewGame extends Component {
             primaryColor: "blue",
             playerSquares: [],
             xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
-            ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y)
+            ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y),
+            isEraserOn: false
         }
 
         this.changePlayer = this.changePlayer.bind(this);
@@ -35,6 +36,7 @@ export default class NewGame extends Component {
         this.changePolyo = this.changePolyo.bind(this);
         this.changePlayerSquares = this.changePlayerSquares.bind(this);
         this.changeBoardSize = this.changeBoardSize.bind(this);
+        this.toggleEraser = this.toggleEraser.bind(this);
     }
 
     changePlayer(player) {
@@ -68,6 +70,13 @@ export default class NewGame extends Component {
         }));
     }
 
+    toggleEraser(isEraserOn) {
+        console.log('toggling eraser...', isEraserOn);
+        this.setState(state => ({
+            isEraserOn: isEraserOn
+        }))
+    }
+
     render() {
         return (
             <Game>
@@ -76,11 +85,13 @@ export default class NewGame extends Component {
                     currentPlayer={this.state.currentPlayer} 
                     currentPolyo={this.state.currentPolyo}
                     playerSquares={this.state.playerSquares}
+                    isEraserOn={this.state.isEraserOn}
                     onPrimaryColorChange={this.changePrimaryColor}
                     onPlayerChange={this.changePlayer} 
                     onPlayerSquaresChange={this.changePlayerSquares}
                     onPolyoChange={this.changePolyo}
                     onBoardSizeChange={this.changeBoardSize}
+                    onToggleEraser={this.toggleEraser}
                     boardX={this.state.xSquares}
                     boardY={this.state.ySquares}
                 />
@@ -90,6 +101,7 @@ export default class NewGame extends Component {
                         currentPlayer={this.state.currentPlayer}
                         currentPolyo={this.state.currentPolyo}
                         playerSquares={this.state.playerSquares}
+                        isEraserOn={this.state.isEraserOn}
                         onPlayerSquaresChange={this.changePlayerSquares}
                         boardX={this.state.xSquares}
                         boardY={this.state.ySquares}
