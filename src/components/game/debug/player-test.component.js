@@ -4,8 +4,8 @@ import { MdRotateLeft, MdRotateRight, MdFlip, MdZoomOutMap, MdFullscreenExit } f
 import ReactTooltip from "react-tooltip";
 import PolyominoPreview from './polyomino-preview/polyomino-preview.component';
 import PolyominoSelector from './polyomino-selector/polyomino-selector';
-import Canvas from './canvas/canvas.component';
-import PrimaryPicker from './canvas/primary-colorpicker.component';
+import Canvas from '../image-preview/canvas/canvas.component';
+import PrimaryPicker from './colorpicker/primary-colorpicker.component';
 import RandomPolyomino from './random-polyomino/random-polyomino.component';
 import ToggleEraser from './eraser/toggle-eraser.component';
 import Button from 'react-bootstrap/Button';
@@ -174,10 +174,6 @@ export default class PlayerTest extends Component {
                     <IncreaseGrid data-tip="Increase Grid Size (max 20)" onClick={this.increaseGrid} size={this.state.matIconSize} />
                     <DecreaseGrid data-tip="Decrease Grid Size (min 10)" onClick={this.decreaseGrid} size={this.state.matIconSize} />
                 </PolyominoMovementControls>
-                <Canvas 
-                    playerSquares={this.props.playerSquares}
-                    boardX={this.props.boardX}
-                    boardY={this.props.boardY} />
                 <ReactTooltip />
             </Controls>
         )

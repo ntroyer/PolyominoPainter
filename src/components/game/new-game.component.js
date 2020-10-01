@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Board from "./board/board.component";
 import PlayerTest from "./debug/player-test.component";
+import ImagePreview from "./image-preview/image-preview.component";
 
 const Game = styled.div`
     display: flex;
@@ -106,7 +107,10 @@ export default class NewGame extends Component {
                         boardY={this.state.ySquares}
                     />
                 </TableDiv>
-                <div style={{width: "12%"}}>Image Preview</div>
+                <ImagePreview 
+                    playerSquares={this.state.playerSquares}
+                    boardX={this.state.xSquares}
+                    boardY={this.state.ySquares} />
             </Game>
         )
     }
