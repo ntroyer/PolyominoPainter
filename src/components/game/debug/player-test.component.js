@@ -4,7 +4,6 @@ import { MdRotateLeft, MdRotateRight, MdFlip, MdZoomOutMap, MdFullscreenExit } f
 import ReactTooltip from "react-tooltip";
 import PolyominoPreview from './polyomino-preview/polyomino-preview.component';
 import PolyominoSelector from './polyomino-selector/polyomino-selector';
-import Canvas from '../image-preview/canvas/canvas.component';
 import PrimaryPicker from './colorpicker/primary-colorpicker.component';
 import RandomPolyomino from './random-polyomino/random-polyomino.component';
 import ToggleEraser from './eraser/toggle-eraser.component';

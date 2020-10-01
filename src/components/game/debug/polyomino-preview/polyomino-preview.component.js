@@ -25,14 +25,13 @@ export default class PolyominoPreview extends Component {
     }
 
     toggleSquareInCurrentPolyo(row, col) {
-        let polyo = this.props.currentPolyo;
         let foundNum = -1;
 
-        this.props.currentPolyo.map((element, key) => {
+        let polyo = this.props.currentPolyo.map((element, key) => {
             if (element[0] === row && element[1] === col) {
                 foundNum = key;
             }
-            return true;
+            return element;
         });
         if (foundNum <= -1) {
             polyo.push([row, col]);
@@ -45,7 +44,7 @@ export default class PolyominoPreview extends Component {
     renderSquare(row, col) {
         row = row-2;
         col = col-2;
-        const key = row + "," + col;
+        const key = 'preview_' + row + "," + col;
         return (
             <PolyominoPreviewSquare
                 key={key}

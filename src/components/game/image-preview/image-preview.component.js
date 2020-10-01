@@ -11,8 +11,8 @@ export default class ImagePreview extends Component {
     render() {
         return (
             <div style={{width: "12%"}}>
-                <div>
-                    Image Preview
+                <div style={{margin: "10px"}}>
+                    Image Preview (right click to save)
                 </div>
                 
                 <Canvas 

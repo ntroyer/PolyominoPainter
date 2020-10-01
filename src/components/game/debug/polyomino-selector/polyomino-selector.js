@@ -25,7 +25,7 @@ export default class PolyominoSelector extends Component {
 
     shufflePolyominos() {
         let shuffledPolyominos = polyominos;
-        let currentIndex = polyominos.length, tempValue, randomIndex;
+        let currentIndex = shuffledPolyominos.length, tempValue, randomIndex;
 
         while (0 !== currentIndex) {
             randomIndex = Math.floor(Math.random() * currentIndex);
