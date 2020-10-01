@@ -37,7 +37,11 @@ const DecreaseGrid = styled(MdFullscreenExit)`
 
 const PolyominoSelectorContainer = styled.div`
     display: flex;
-    padding-top: 10px;
+    margin: 10px auto;
+`;
+
+const PolyominoCanvasControls = styled.div`
+    margin: 10px auto;
 `;
 
 const PolyominoMovementControls = styled.div`
@@ -48,6 +52,7 @@ const PolyominoMovementControls = styled.div`
 
 const Controls = styled.div`
     margin: 10px;
+    width: 300px;
 `;
 
 export default class PlayerTest extends Component {
@@ -139,9 +144,6 @@ export default class PlayerTest extends Component {
     render() {
         return (
             <Controls>
-                <h1>
-                    Polyomino Controls
-                </h1>
                 <div>
                     Color
                 </div>
@@ -158,12 +160,12 @@ export default class PlayerTest extends Component {
                         currentPrimaryColor={this.props.currentPrimaryColor}
                         onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
-                <PolyominoMovementControls>
+                <PolyominoCanvasControls>
                     <ToggleEraser onToggleEraser={this.props.onToggleEraser} />
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} />
-                    <Button variant="secondary" onClick={this.clearCanvas}>Clear Canvas</Button>
-                    <Button variant="secondary" onClick={this.clearPolyomino}>Clear Polyomino</Button>
-                </PolyominoMovementControls>
+                    <Button className="mt-2 mr-2" variant="secondary" onClick={this.clearCanvas}>Clear Canvas</Button>
+                    <Button className="mt-2" variant="secondary" onClick={this.clearPolyomino}>Clear Polyomino</Button>
+                </PolyominoCanvasControls>
                 <PolyominoMovementControls>
                     <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} size={this.state.matIconSize} />
                     <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} size={this.state.matIconSize} />

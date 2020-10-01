@@ -21,7 +21,7 @@ export default class ToggleEraser extends Component {
 
     render() {
         return (
-            <ButtonGroup toggle>
+            <ButtonGroup className="mb-2" toggle>
                 <ToggleButton 
                     type="checkbox" 
                     value="1" 

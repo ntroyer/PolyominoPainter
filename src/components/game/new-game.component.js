@@ -71,7 +71,6 @@ export default class NewGame extends Component {
     }
 
     toggleEraser(isEraserOn) {
-        console.log('toggling eraser...', isEraserOn);
         this.setState(state => ({
             isEraserOn: isEraserOn
         }))
@@ -107,7 +106,7 @@ export default class NewGame extends Component {
                         boardY={this.state.ySquares}
                     />
                 </TableDiv>
-                <div style={{flex: "1"}}>Image Preview</div>
+                <div style={{width: "12%"}}>Image Preview</div>
             </Game>
         )
     }
