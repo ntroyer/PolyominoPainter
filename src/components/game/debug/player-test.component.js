@@ -8,6 +8,7 @@ import Canvas from './canvas/canvas.component';
 import PrimaryPicker from './canvas/primary-colorpicker.component';
 import RandomPolyomino from './random-polyomino/random-polyomino.component';
 import ToggleEraser from './eraser/toggle-eraser.component';
+import Button from 'react-bootstrap/Button';
 
 const RotateLeft = styled(MdRotateLeft)`
     cursor: pointer;
@@ -52,6 +53,10 @@ const Controls = styled.div`
 export default class PlayerTest extends Component {
     constructor(props) {
         super();
+
+        this.state = {
+            matIconSize: 48
+        }
 
         this.rotateLeft = this.rotateLeft.bind(this);
         this.rotateRight = this.rotateRight.bind(this);
@@ -154,18 +159,18 @@ export default class PlayerTest extends Component {
                         onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
                 <PolyominoMovementControls>
-                    <ToggleEraser onToggleEraser={this.props.onToggleEraser} /> 
+                    <ToggleEraser onToggleEraser={this.props.onToggleEraser} />
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} />
-                    <button onClick={this.clearCanvas}>Clear Canvas</button>
-                    <button onClick={this.clearPolyomino}>Clear Polyomino</button>
+                    <Button variant="secondary" onClick={this.clearCanvas}>Clear Canvas</Button>
+                    <Button variant="secondary" onClick={this.clearPolyomino}>Clear Polyomino</Button>
                 </PolyominoMovementControls>
                 <PolyominoMovementControls>
-                    <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
-                    <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
-                    <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />
-                    <FlipY data-tip="Flip Vertically" onClick={this.flipY} />
-                    <IncreaseGrid data-tip="Increase Grid Size (max 20)" onClick={this.increaseGrid} />
-                    <DecreaseGrid data-tip="Decrease Grid Size (min 10)" onClick={this.decreaseGrid} />
+                    <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} size={this.state.matIconSize} />
+                    <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} size={this.state.matIconSize} />
+                    <FlipX data-tip="Flip Horizontally" onClick={this.flipX} size={this.state.matIconSize} />
+                    <FlipY data-tip="Flip Vertically" onClick={this.flipY} size={this.state.matIconSize} />
+                    <IncreaseGrid data-tip="Increase Grid Size (max 20)" onClick={this.increaseGrid} size={this.state.matIconSize} />
+                    <DecreaseGrid data-tip="Decrease Grid Size (min 10)" onClick={this.decreaseGrid} size={this.state.matIconSize} />
                 </PolyominoMovementControls>
                 <Canvas 
                     playerSquares={this.props.playerSquares}

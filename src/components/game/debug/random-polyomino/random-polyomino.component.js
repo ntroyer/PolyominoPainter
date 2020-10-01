@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { polyominos } from '../../../../data/polyominos';
+import Button from 'react-bootstrap/Button';
 
 export default class RandomPolyomino extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export default class RandomPolyomino extends Component {
 
     render() {
         return (
-            <button onClick={this.setRandomPolyomino}>Get Random Polyomino</button>
+            <Button variant="secondary" onClick={this.setRandomPolyomino}>Get Random Polyomino</Button>
         )
     }
 }
