@@ -17,10 +17,10 @@ export default class Canvas extends Component {
 
     drawCanvas() {
         const playerSquares = this.props.playerSquares;
-        const pixelWidth = 200 / this.props.boardX;
-        const pixelHeight = 200 / this.props.boardY;
+        const pixelWidth = this.props.canvasWidth / this.props.boardX;
+        const pixelHeight = this.props.canvasHeight / this.props.boardY;
         const context = this.canvasRef.current.getContext("2d");
-        context.clearRect(0, 0, 200, 200);
+        context.clearRect(0, 0, this.props.canvasWidth, this.props.canvasHeight);
 
         Object.keys(playerSquares).map((index) => {
             const splitIndex = index.split(',');
@@ -37,7 +37,11 @@ export default class Canvas extends Component {
 
     render() {
         return (
-            <canvas width="200" height="200" ref={this.canvasRef} style={{border: "2px solid"}}></canvas>
+            <canvas 
+                width={this.props.canvasWidth} 
+                height={this.props.canvasHeight} 
+                ref={this.canvasRef} 
+                style={{border: "2px solid"}}></canvas>
         )
     }
 }
