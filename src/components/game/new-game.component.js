@@ -29,7 +29,15 @@ export default class NewGame extends Component {
             playerSquares: [],
             xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
             ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y),
-            isEraserOn: false
+            isEraserOn: false,
+            playerSquaresHistory: [],
+            currentPolyoHistory: [
+                [
+                    [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
+                ]
+            ],
+            playerSquaresStep: 0,
+            currentPolyoStep: 0
         }
 
         this.changePlayer = this.changePlayer.bind(this);
@@ -37,6 +45,8 @@ export default class NewGame extends Component {
         this.changePolyo = this.changePolyo.bind(this);
         this.changePlayerSquares = this.changePlayerSquares.bind(this);
         this.changeBoardSize = this.changeBoardSize.bind(this);
+        this.changePolyoHistory = this.changePolyoHistory.bind(this);
+        this.changeSquaresHistory = this.changeSquaresHistory.bind(this);
         this.toggleEraser = this.toggleEraser.bind(this);
     }
 
@@ -53,14 +63,19 @@ export default class NewGame extends Component {
     }
 
     changePolyo(polyo) {
+        const history = this.state.currentPolyoHistory.slice(0, this.state.currentPolyoStep + 1);
         this.setState(state => ({
-            currentPolyo: polyo
+            currentPolyo: polyo,
+            currentPolyoHistory: history.concat([polyo]),
+            currentPolyoStep: this.state.currentPolyoStep + 1
         }));
     }
 
     changePlayerSquares(squares) {
         this.setState(state => ({
-            playerSquares: squares
+            playerSquares: squares,
+            playerSquaresHistory: this.state.playerSquaresHistory.concat([squares]),
+            playerSquaresStep: this.state.playerSquaresStep + 1
         }));
     }
 
@@ -69,6 +84,39 @@ export default class NewGame extends Component {
             xSquares: x,
             ySquares: y
         }));
+    }
+
+    changePolyoHistory(isUndo) {
+        if (isUndo) {
+            const stepBack = this.state.currentPolyoStep - 1;
+            if (typeof this.state.currentPolyoHistory[stepBack] !== 'undefined') {
+                this.setState(state => ({
+                    currentPolyo: this.state.currentPolyoHistory[stepBack],
+                    currentPolyoStep: stepBack
+                }));
+            }
+        } else {
+            const stepForward = this.state.currentPolyoStep + 1;
+
+            if (typeof this.state.currentPolyoHistory[stepForward] !== 'undefined') {
+                this.setState(state => ({
+                    currentPolyo: this.state.currentPolyoHistory[stepForward],
+                    currentPolyoStep: stepForward
+                }));
+            }
+        }
+    }
+
+    changeSquaresHistory(isUndo) {
+        if (isUndo) {
+            this.setState(state => ({
+
+            }));
+        } else {
+            this.setState(state => ({
+
+            }));
+        }
     }
 
     toggleEraser(isEraserOn) {
@@ -92,6 +140,8 @@ export default class NewGame extends Component {
                     onPolyoChange={this.changePolyo}
                     onBoardSizeChange={this.changeBoardSize}
                     onToggleEraser={this.toggleEraser}
+                    onUndoPolyo={this.changePolyoHistory}
+                    onRedoPolyo={this.changePolyoHistory}
                     boardX={this.state.xSquares}
                     boardY={this.state.ySquares}
                 />
