@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-
 import Canvas from './canvas/canvas.component';
 
 export default class ImagePreview extends Component {

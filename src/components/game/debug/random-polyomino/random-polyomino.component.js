@@ -21,7 +21,7 @@ export default class RandomPolyomino extends Component {
 
     render() {
         return (
-            <Button variant="secondary" onClick={this.setRandomPolyomino}>Get Random Polyomino</Button>
+            <Button variant="secondary" onClick={this.setRandomPolyomino}>Random Polyomino</Button>
         )
     }
 }

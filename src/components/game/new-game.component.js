@@ -30,14 +30,17 @@ export default class NewGame extends Component {
             xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
             ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y),
             isEraserOn: false,
-            playerSquaresHistory: [],
+            playerSquaresHistory: [
+                []
+            ],
             currentPolyoHistory: [
                 [
                     [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
                 ]
             ],
             playerSquaresStep: 0,
-            currentPolyoStep: 0
+            currentPolyoStep: 0,
+            matIconSize: 48
         }
 
         this.changePlayer = this.changePlayer.bind(this);
@@ -72,9 +75,10 @@ export default class NewGame extends Component {
     }
 
     changePlayerSquares(squares) {
+        const history = this.state.playerSquaresHistory.slice(0, this.state.playerSquaresStep + 1);
         this.setState(state => ({
             playerSquares: squares,
-            playerSquaresHistory: this.state.playerSquaresHistory.concat([squares]),
+            playerSquaresHistory: history.concat([squares]),
             playerSquaresStep: this.state.playerSquaresStep + 1
         }));
     }
@@ -87,34 +91,21 @@ export default class NewGame extends Component {
     }
 
     changePolyoHistory(isUndo) {
-        if (isUndo) {
-            const stepBack = this.state.currentPolyoStep - 1;
-            if (typeof this.state.currentPolyoHistory[stepBack] !== 'undefined') {
-                this.setState(state => ({
-                    currentPolyo: this.state.currentPolyoHistory[stepBack],
-                    currentPolyoStep: stepBack
-                }));
-            }
-        } else {
-            const stepForward = this.state.currentPolyoStep + 1;
-
-            if (typeof this.state.currentPolyoHistory[stepForward] !== 'undefined') {
-                this.setState(state => ({
-                    currentPolyo: this.state.currentPolyoHistory[stepForward],
-                    currentPolyoStep: stepForward
-                }));
-            }
+        const newStep = isUndo ? this.state.currentPolyoStep - 1 : this.state.currentPolyoStep + 1;
+        if (typeof this.state.currentPolyoHistory[newStep] !== 'undefined') {
+            this.setState(state => ({
+                currentPolyo: this.state.currentPolyoHistory[newStep],
+                currentPolyoStep: newStep
+            }));
         }
     }
 
     changeSquaresHistory(isUndo) {
-        if (isUndo) {
+        const newStep = isUndo ? this.state.playerSquaresStep - 1 : this.state.playerSquaresStep + 1;
+        if (typeof this.state.playerSquaresHistory[newStep] !== 'undefined') {
             this.setState(state => ({
-
-            }));
-        } else {
-            this.setState(state => ({
-
+                playerSquares: this.state.playerSquaresHistory[newStep],
+                playerSquaresStep: newStep
             }));
         }
     }
@@ -138,12 +129,10 @@ export default class NewGame extends Component {
                     onPlayerChange={this.changePlayer} 
                     onPlayerSquaresChange={this.changePlayerSquares}
                     onPolyoChange={this.changePolyo}
-                    onBoardSizeChange={this.changeBoardSize}
                     onToggleEraser={this.toggleEraser}
                     onUndoPolyo={this.changePolyoHistory}
                     onRedoPolyo={this.changePolyoHistory}
-                    boardX={this.state.xSquares}
-                    boardY={this.state.ySquares}
+                    matIconSize={this.state.matIconSize}
                 />
                 <TableDiv>
                     <Board 
@@ -153,6 +142,10 @@ export default class NewGame extends Component {
                         playerSquares={this.state.playerSquares}
                         isEraserOn={this.state.isEraserOn}
                         onPlayerSquaresChange={this.changePlayerSquares}
+                        matIconSize={this.state.matIconSize}
+                        onBoardSizeChange={this.changeBoardSize}
+                        onUndoCanvas={this.changeSquaresHistory}
+                        onRedoCanvas={this.changeSquaresHistory}
                         boardX={this.state.xSquares}
                         boardY={this.state.ySquares}
                     />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { MdRotateLeft, MdRotateRight, MdFlip, MdZoomOutMap, MdFullscreenExit, MdRedo, MdUndo } from 'react-icons/md';
+import { MdRotateLeft, MdRotateRight, MdFlip, MdRedo, MdUndo } from 'react-icons/md';
 import ReactTooltip from "react-tooltip";
 import PolyominoPreview from './polyomino-preview/polyomino-preview.component';
 import PolyominoSelector from './polyomino-selector/polyomino-selector';
@@ -23,14 +23,6 @@ const FlipX = styled(MdFlip)`
 `;
 
 const FlipY = styled(MdFlip)`
-    cursor: pointer;
-`;
-
-const IncreaseGrid = styled(MdZoomOutMap)`
-    cursor: pointer;
-`;
-
-const DecreaseGrid = styled(MdFullscreenExit)`
     cursor: pointer;
 `;
 
@@ -66,19 +58,12 @@ export default class PlayerTest extends Component {
     constructor(props) {
         super();
 
-        this.state = {
-            matIconSize: 48
-        }
-
         this.rotateLeft = this.rotateLeft.bind(this);
         this.rotateRight = this.rotateRight.bind(this);
         this.flipX = this.flipX.bind(this);
         this.flipY = this.flipY.bind(this);
-        this.increaseGrid = this.increaseGrid.bind(this);
-        this.decreaseGrid = this.decreaseGrid.bind(this);
         this.undoPolyo = this.undoPolyo.bind(this);
         this.redoPolyo = this.redoPolyo.bind(this);
-        this.clearCanvas = this.clearCanvas.bind(this);
         this.clearPolyomino = this.clearPolyomino.bind(this);
     }
 
@@ -128,23 +113,7 @@ export default class PlayerTest extends Component {
             return newPosition;
         });
         this.props.onPolyoChange(newPolyo);
-    }
-
-    increaseGrid() {
-        if (this.props.boardX+1 <= 20) {
-            this.props.onBoardSizeChange(this.props.boardX+1, this.props.boardY+1)
-        }
-    }
-
-    decreaseGrid() {
-        if (this.props.boardX-1 >= 10) {
-            this.props.onBoardSizeChange(this.props.boardX-1, this.props.boardY-1)
-        }
-    }
-
-    clearCanvas() {
-        this.props.onPlayerSquaresChange([]);
-    }
+    }    
 
     clearPolyomino() {
         this.props.onPolyoChange([]);
@@ -158,17 +127,12 @@ export default class PlayerTest extends Component {
         this.props.onRedoPolyo(false);
     }
 
-    undoCanvas() {
-
-    }
-
-    redoCanvas() {
-
-    }
-
     render() {
         return (
             <Controls>
+                <p>
+                    Brush Controls
+                </p>
                 <PrimaryPicker 
                     onColorChange={this.props.onPrimaryColorChange} />
                 <PolyominoPreview 
@@ -185,20 +149,15 @@ export default class PlayerTest extends Component {
                 <PolyominoCanvasControls>
                     <ToggleEraser onToggleEraser={this.props.onToggleEraser} />
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} />
-                    <Button className="mt-2 mr-2" variant="secondary" onClick={this.clearCanvas}>Clear Canvas</Button>
-                    <Button className="mt-2" variant="secondary" onClick={this.clearPolyomino}>Clear Polyomino</Button>
-                    <IncreaseGrid data-tip="Increase Grid Size (max 20)" onClick={this.increaseGrid} size={this.state.matIconSize} />
-                    <DecreaseGrid data-tip="Decrease Grid Size (min 10)" onClick={this.decreaseGrid} size={this.state.matIconSize} />
-                    <Undo data-tip="Undo Canvas Change" onClick={this.undoCanvas} size={this.state.matIconSize} />
-                    <Redo data-tip="Redo Canvas Change" onClick={this.redoCanvas} size={this.state.matIconSize} />
+                    <Button className="mt-2" variant="secondary" onClick={this.clearPolyomino}>Clear Brush</Button>
                 </PolyominoCanvasControls>
                 <PolyominoMovementControls>
-                    <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} size={this.state.matIconSize} />
-                    <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} size={this.state.matIconSize} />
-                    <FlipX data-tip="Flip Horizontally" onClick={this.flipX} size={this.state.matIconSize} />
-                    <FlipY data-tip="Flip Vertically" onClick={this.flipY} size={this.state.matIconSize} />
-                    <Undo data-tip="Undo Polyomino Change" onClick={this.undoPolyo} size={this.state.matIconSize} />
-                    <Redo data-tip="Redo Polyomino Change" onClick={this.redoPolyo} size={this.state.matIconSize} />
+                    <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} size={this.props.matIconSize} />
+                    <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} size={this.props.matIconSize} />
+                    <FlipX data-tip="Flip Horizontally" onClick={this.flipX} size={this.props.matIconSize} />
+                    <FlipY data-tip="Flip Vertically" onClick={this.flipY} size={this.props.matIconSize} />
+                    <Undo data-tip="Undo Brush Change" onClick={this.undoPolyo} size={this.props.matIconSize} />
+                    <Redo data-tip="Redo Brush Change" onClick={this.redoPolyo} size={this.props.matIconSize} />
                 </PolyominoMovementControls>
                 <ReactTooltip />
             </Controls>
