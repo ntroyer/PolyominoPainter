@@ -40,7 +40,7 @@ const PolyominoSelectorContainer = styled.div`
 `;
 
 const PolyominoCanvasControls = styled.div`
-    margin: 10px auto;
+    display: flex;
 `;
 
 const PolyominoMovementControls = styled.div`
@@ -68,51 +68,27 @@ export default class PlayerTest extends Component {
     }
 
     rotateLeft() {
-        let newPolyo = this.props.currentPolyo.map((position) => {
-            let newPosition = [];
-
-            newPosition[0] = position[1] * -1;
-            newPosition[1] = position[0];
-
-            return newPosition;
-        });
-        this.props.onPolyoChange(newPolyo);
+        this.props.onPolyoChange(this.props.currentPolyo.map((position) => {
+            return [position[1] * -1, position[0]];
+        }));
     }
 
     rotateRight() {
-        let newPolyo = this.props.currentPolyo.map((position) => {
-            let newPosition = [];
-
-            newPosition[0] = position[1];
-            newPosition[1] = position[0] * -1;
-
-            return newPosition;
-        });
-        this.props.onPolyoChange(newPolyo);
+        this.props.onPolyoChange(this.props.currentPolyo.map((position) => {
+            return [position[1], position[0] * -1];
+        }));
     }
 
     flipX() {
-        let newPolyo = this.props.currentPolyo.map((position) => {
-            let newPosition = [];
-
-            newPosition[0] = position[0] * -1;
-            newPosition[1] = position[1];
-
-            return newPosition;
-        });
-        this.props.onPolyoChange(newPolyo);
+        this.props.onPolyoChange(this.props.currentPolyo.map((position) => {
+            return [position[0] * -1, position[1]];
+        }));
     }
 
     flipY() {
-        let newPolyo = this.props.currentPolyo.map((position) => {
-            let newPosition = [];
-
-            newPosition[0] = position[0];
-            newPosition[1] = position[1] * -1;
-
-            return newPosition;
-        });
-        this.props.onPolyoChange(newPolyo);
+        this.props.onPolyoChange(this.props.currentPolyo.map((position) => {
+            return [position[0], position[1] * -1];
+        }));
     }    
 
     clearPolyomino() {
@@ -147,9 +123,9 @@ export default class PlayerTest extends Component {
                         onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
                 <PolyominoCanvasControls>
-                    <ToggleEraser onToggleEraser={this.props.onToggleEraser} />
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} />
-                    <Button className="mt-2" variant="secondary" onClick={this.clearPolyomino}>Clear Brush</Button>
+                    <ToggleEraser onToggleEraser={this.props.onToggleEraser} />
+                    <Button  variant="secondary" onClick={this.clearPolyomino}>Clear Brush</Button>
                 </PolyominoCanvasControls>
                 <PolyominoMovementControls>
                     <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} size={this.props.matIconSize} />
