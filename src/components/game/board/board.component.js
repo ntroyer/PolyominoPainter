@@ -78,12 +78,10 @@ export default class Board extends Component {
     }
 
     undoCanvas() {
-        console.log('undo canvas');
         this.props.onUndoCanvas(true);
     }
 
     redoCanvas() {
-        console.log('redo canvas');
         this.props.onRedoCanvas(false);
     }
 
@@ -102,7 +100,7 @@ export default class Board extends Component {
     }
 
     eraseSquares() {
-        let currentPlayerSquares = this.props.playerSquares;
+        let currentPlayerSquares = Object.assign([], this.props.playerSquares);
 
         this.state.currentComputedPolyo.map((item) => {
             let squareKey = item[0] + ',' + item[1];
