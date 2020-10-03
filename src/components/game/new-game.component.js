@@ -40,7 +40,7 @@ export default class NewGame extends Component {
             ],
             playerSquaresStep: 0,
             currentPolyoStep: 0,
-            matIconSize: 48
+            matIconSize: 50
         }
 
         this.changePlayer = this.changePlayer.bind(this);
