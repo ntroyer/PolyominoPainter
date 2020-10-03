@@ -134,7 +134,6 @@ export default class NewGame extends Component {
                     onRedoPolyo={this.changePolyoHistory}
                     matIconSize={this.state.matIconSize}
                 />
-                <TableDiv>
                     <Board 
                         currentPrimaryColor={this.state.primaryColor}
                         currentPlayer={this.state.currentPlayer}
@@ -149,7 +148,6 @@ export default class NewGame extends Component {
                         boardX={this.state.xSquares}
                         boardY={this.state.ySquares}
                     />
-                </TableDiv>
                 <ImagePreview 
                     playerSquares={this.state.playerSquares}
                     boardX={this.state.xSquares}

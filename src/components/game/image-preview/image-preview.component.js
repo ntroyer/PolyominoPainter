@@ -8,7 +8,7 @@ export default class ImagePreview extends Component {
 
     render() {
         return (
-            <div style={{width: "12%"}}>
+            <div style={{width: "15%"}}>
                 <div style={{margin: "10px"}}>
                     Image Preview (right click to save)
                 </div>
