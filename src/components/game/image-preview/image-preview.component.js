@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Canvas from './canvas/canvas.component';
+
+const ImagePreviewCanvas = styled.div`
+    width: 15%;
+    background-color: #e9ecef;
+    padding: 10px;
+`;
 
 export default class ImagePreview extends Component {
     constructor(props) {
@@ -8,7 +15,7 @@ export default class ImagePreview extends Component {
 
     render() {
         return (
-            <div style={{width: "15%"}}>
+            <ImagePreviewCanvas>
                 <div style={{margin: "10px"}}>
                     Image Preview (right click to save)
                 </div>
@@ -26,7 +33,7 @@ export default class ImagePreview extends Component {
                     boardY={this.props.boardY}
                     canvasWidth={200}
                     canvasHeight={200} />
-            </div>
+            </ImagePreviewCanvas>
         )
     }
 }

@@ -50,8 +50,9 @@ const PolyominoMovementControls = styled.div`
 `;
 
 const Controls = styled.div`
-    margin: 10px;
+    padding: 10px;
     width: 15%;
+    background-color: #e9ecef;
 `;
 
 export default class PlayerTest extends Component {

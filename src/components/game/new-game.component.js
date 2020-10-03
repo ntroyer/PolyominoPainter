@@ -7,13 +7,7 @@ import ImagePreview from "./image-preview/image-preview.component";
 
 const Game = styled.div`
     display: flex;
-    gap: 10px;
     justify-content: center;
-`;
-
-const TableDiv = styled.div`
-    flex: 0 0 100em;
-    margin: 10px auto;
 `;
 
 export default class NewGame extends Component {
@@ -134,20 +128,20 @@ export default class NewGame extends Component {
                     onRedoPolyo={this.changePolyoHistory}
                     matIconSize={this.state.matIconSize}
                 />
-                    <Board 
-                        currentPrimaryColor={this.state.primaryColor}
-                        currentPlayer={this.state.currentPlayer}
-                        currentPolyo={this.state.currentPolyo}
-                        playerSquares={this.state.playerSquares}
-                        isEraserOn={this.state.isEraserOn}
-                        onPlayerSquaresChange={this.changePlayerSquares}
-                        matIconSize={this.state.matIconSize}
-                        onBoardSizeChange={this.changeBoardSize}
-                        onUndoCanvas={this.changeSquaresHistory}
-                        onRedoCanvas={this.changeSquaresHistory}
-                        boardX={this.state.xSquares}
-                        boardY={this.state.ySquares}
-                    />
+                <Board 
+                    currentPrimaryColor={this.state.primaryColor}
+                    currentPlayer={this.state.currentPlayer}
+                    currentPolyo={this.state.currentPolyo}
+                    playerSquares={this.state.playerSquares}
+                    isEraserOn={this.state.isEraserOn}
+                    onPlayerSquaresChange={this.changePlayerSquares}
+                    matIconSize={this.state.matIconSize}
+                    onBoardSizeChange={this.changeBoardSize}
+                    onUndoCanvas={this.changeSquaresHistory}
+                    onRedoCanvas={this.changeSquaresHistory}
+                    boardX={this.state.xSquares}
+                    boardY={this.state.ySquares}
+                />
                 <ImagePreview 
                     playerSquares={this.state.playerSquares}
                     boardX={this.state.xSquares}

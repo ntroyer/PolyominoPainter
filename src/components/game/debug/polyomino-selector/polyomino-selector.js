@@ -5,9 +5,10 @@ import { polyominos } from '../../../../data/polyominos';
 
 const SelectorDiv = styled.div`
     display: flex;
-    height: 120px;
+    height: 100px;
     width: 300px;
     outline: 2px solid black;
+    background-color: white;
 `;
 
 export default class PolyominoSelector extends Component {
