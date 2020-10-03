@@ -8,7 +8,7 @@ import ImagePreview from "./image-preview/image-preview.component";
 const Game = styled.div`
     display: flex;
     justify-content: center;
-    height: 95.8vh;
+    height: 95.4vh;
 `;
 
 export default class NewGame extends Component {
