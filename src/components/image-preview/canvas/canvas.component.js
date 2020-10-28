@@ -16,19 +16,19 @@ export default class Canvas extends Component {
     }
 
     drawCanvas() {
-        const playerSquares = this.props.playerSquares;
+        const canvas = this.props.canvas;
         const pixelWidth = this.props.canvasWidth / this.props.boardX;
         const pixelHeight = this.props.canvasHeight / this.props.boardY;
         const context = this.canvasRef.current.getContext("2d");
         context.clearRect(0, 0, this.props.canvasWidth, this.props.canvasHeight);
 
-        Object.keys(playerSquares).map((index) => {
+        Object.keys(canvas).map((index) => {
             const splitIndex = index.split(',');
             const y = Number(splitIndex[0]);
             const x = Number(splitIndex[1]);
 
             context.beginPath();
-            context.fillStyle = playerSquares[index];
+            context.fillStyle = canvas[index];
             context.fillRect(x * pixelWidth, y * pixelWidth, pixelWidth, pixelHeight);
             context.fill();
             return true;

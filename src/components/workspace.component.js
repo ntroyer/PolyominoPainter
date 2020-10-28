@@ -20,12 +20,12 @@ export default class Workspace extends Component {
                 [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
             ],
             primaryColor: "blue",
-            playerSquares: [],
+            canvas: [],
             xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
             ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y),
             isEraserOn: false,
             isColorSelectorOn: false,
-            playerSquaresHistory: [
+            canvasHistory: [
                 []
             ],
             currentPolyoHistory: [
@@ -33,14 +33,14 @@ export default class Workspace extends Component {
                     [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
                 ]
             ],
-            playerSquaresStep: 0,
+            canvasStep: 0,
             currentPolyoStep: 0,
             matIconSize: 50
         }
 
         this.changePrimaryColor = this.changePrimaryColor.bind(this);
         this.changePolyo = this.changePolyo.bind(this);
-        this.changePlayerSquares = this.changePlayerSquares.bind(this);
+        this.changeCanvas = this.changeCanvas.bind(this);
         this.changeBoardSize = this.changeBoardSize.bind(this);
         this.changePolyoHistory = this.changePolyoHistory.bind(this);
         this.changeSquaresHistory = this.changeSquaresHistory.bind(this);
@@ -63,12 +63,12 @@ export default class Workspace extends Component {
         }));
     }
 
-    changePlayerSquares(squares) {
-        const history = this.state.playerSquaresHistory.slice(0, this.state.playerSquaresStep + 1);
+    changeCanvas(squares) {
+        const history = this.state.canvasHistory.slice(0, this.state.canvasStep + 1);
         this.setState(state => ({
-            playerSquares: squares,
-            playerSquaresHistory: history.concat([squares]),
-            playerSquaresStep: this.state.playerSquaresStep + 1
+            canvas: squares,
+            canvasHistory: history.concat([squares]),
+            canvasStep: this.state.canvasStep + 1
         }));
     }
 
@@ -90,11 +90,11 @@ export default class Workspace extends Component {
     }
 
     changeSquaresHistory(isUndo) {
-        const newStep = isUndo ? this.state.playerSquaresStep - 1 : this.state.playerSquaresStep + 1;
-        if (typeof this.state.playerSquaresHistory[newStep] !== 'undefined') {
+        const newStep = isUndo ? this.state.canvasStep - 1 : this.state.canvasStep + 1;
+        if (typeof this.state.canvasHistory[newStep] !== 'undefined') {
             this.setState(state => ({
-                playerSquares: this.state.playerSquaresHistory[newStep],
-                playerSquaresStep: newStep
+                canvas: this.state.canvasHistory[newStep],
+                canvasStep: newStep
             }));
         }
     }
@@ -125,12 +125,12 @@ export default class Workspace extends Component {
                 <BrushControls 
                     currentPrimaryColor={this.state.primaryColor}
                     currentPolyo={this.state.currentPolyo}
-                    playerSquares={this.state.playerSquares}
+                    canvas={this.state.canvas}
                     isEraserOn={this.state.isEraserOn}
                     isColorSelectorOn={this.state.isColorSelectorOn}
                     onPrimaryColorChange={this.changePrimaryColor}
                     onPlayerChange={this.changePlayer} 
-                    onPlayerSquaresChange={this.changePlayerSquares}
+                    onCanvasChange={this.changeCanvas}
                     onPolyoChange={this.changePolyo}
                     onToggleEraser={this.toggleEraser}
                     onToggleColorSelector={this.toggleColorSelector}
@@ -141,11 +141,11 @@ export default class Workspace extends Component {
                 <Board 
                     currentPrimaryColor={this.state.primaryColor}
                     currentPolyo={this.state.currentPolyo}
-                    playerSquares={this.state.playerSquares}
+                    canvas={this.state.canvas}
                     isEraserOn={this.state.isEraserOn}
                     isColorSelectorOn={this.state.isColorSelectorOn}
                     onPrimaryColorChange={this.changePrimaryColor}
-                    onPlayerSquaresChange={this.changePlayerSquares}
+                    onCanvasChange={this.changeCanvas}
                     onToggleColorSelector={this.toggleColorSelector}
                     matIconSize={this.state.matIconSize}
                     onBoardSizeChange={this.changeBoardSize}
@@ -155,7 +155,7 @@ export default class Workspace extends Component {
                     boardY={this.state.ySquares}
                 />
                 <ImagePreview 
-                    playerSquares={this.state.playerSquares}
+                    canvas={this.state.canvas}
                     boardX={this.state.xSquares}
                     boardY={this.state.ySquares} />
             </WorkspaceDiv>

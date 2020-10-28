@@ -86,7 +86,7 @@ export default class Board extends Component {
     }
 
     clearCanvas() {
-        this.props.onPlayerSquaresChange([]);
+        this.props.onCanvasChange([]);
     }
 
     setCurrentCenter(row, col) {
@@ -100,15 +100,15 @@ export default class Board extends Component {
     }
 
     eraseSquares() {
-        let currentPlayerSquares = Object.assign([], this.props.playerSquares);
+        let canvas = Object.assign([], this.props.canvas);
 
         this.state.currentComputedPolyo.map((item) => {
             let squareKey = item[0] + ',' + item[1];
-            delete currentPlayerSquares[squareKey];
+            delete canvas[squareKey];
             return true;
         });
 
-        this.props.onPlayerSquaresChange(currentPlayerSquares);
+        this.props.onCanvasChange(canvas);
     }
 
     getColorFromSquare(assignedColor) {
@@ -130,14 +130,14 @@ export default class Board extends Component {
             return;
         }
 
-        let currentPlayerSquares = Object.assign([], this.props.playerSquares);
+        let canvas = Object.assign([], this.props.canvas);
 
         this.state.currentComputedPolyo.map((item) => {
-            currentPlayerSquares[item[0] + ',' + item[1]] = newColor;
+            canvas[item[0] + ',' + item[1]] = newColor;
             return true;
         });
 
-        this.props.onPlayerSquaresChange(currentPlayerSquares);
+        this.props.onCanvasChange(canvas);
     }
 
     computePolyoCoords(row, col) {
@@ -148,8 +148,8 @@ export default class Board extends Component {
 
     getSquareAssignment(row, col) {
         const rowColKey = row + ',' + col;
-        if (this.props.playerSquares[rowColKey] && this.props.playerSquares[rowColKey] !== 'undefined') {
-            return this.props.playerSquares[rowColKey];
+        if (this.props.canvas[rowColKey] && this.props.canvas[rowColKey] !== 'undefined') {
+            return this.props.canvas[rowColKey];
         }
 
         return 0;

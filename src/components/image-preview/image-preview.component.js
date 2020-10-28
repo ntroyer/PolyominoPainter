@@ -21,14 +21,14 @@ export default class ImagePreview extends Component {
                 </div>
                 <p>20 x 20</p>
                 <Canvas 
-                    playerSquares={this.props.playerSquares}
+                    canvas={this.props.canvas}
                     boardX={this.props.boardX}
                     boardY={this.props.boardY}
                     canvasWidth={20}
                     canvasHeight={20} />
                 <p>200 x 200</p>
                 <Canvas 
-                    playerSquares={this.props.playerSquares}
+                    canvas={this.props.canvas}
                     boardX={this.props.boardX}
                     boardY={this.props.boardY}
                     canvasWidth={200}
