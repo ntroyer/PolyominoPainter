@@ -9,6 +9,7 @@ const SelectorDiv = styled.div`
     width: 300px;
     outline: 2px solid black;
     background-color: white;
+    cursor: pointer;
 `;
 
 export default class PolyominoSelector extends Component {

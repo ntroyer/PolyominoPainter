@@ -55,7 +55,7 @@ const Controls = styled.div`
     background-color: #e9ecef;
 `;
 
-export default class PlayerTest extends Component {
+export default class BrushControls extends Component {
     constructor(props) {
         super();
 

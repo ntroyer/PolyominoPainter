@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import Board from "./board/board.component";
-import PlayerTest from "./brush-controls/player-test.component";
+import BrushControls from "./brush-controls/brush-controls.component";
 import ImagePreview from "./image-preview/image-preview.component";
 
 const WorkspaceDiv = styled.div`
@@ -114,7 +114,7 @@ export default class Workspace extends Component {
     render() {
         return (
             <WorkspaceDiv>
-                <PlayerTest 
+                <BrushControls 
                     currentPrimaryColor={this.state.primaryColor}
                     currentPlayer={this.state.currentPlayer} 
                     currentPolyo={this.state.currentPolyo}

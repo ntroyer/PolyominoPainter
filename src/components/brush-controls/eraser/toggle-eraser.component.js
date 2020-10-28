@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import { FaEraser } from 'react-icons/fa';
+
+const Eraser = styled(FaEraser)`
+    cursor: pointer;
+`;
 
 export default class ToggleEraser extends Component {
     constructor(props) {
