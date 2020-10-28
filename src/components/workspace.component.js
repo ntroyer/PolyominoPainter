@@ -16,7 +16,6 @@ export default class Workspace extends Component {
         super();
 
         this.state = {
-            currentPlayer: 1,
             currentPolyo: [
                 [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
             ],
@@ -39,7 +38,6 @@ export default class Workspace extends Component {
             matIconSize: 50
         }
 
-        this.changePlayer = this.changePlayer.bind(this);
         this.changePrimaryColor = this.changePrimaryColor.bind(this);
         this.changePolyo = this.changePolyo.bind(this);
         this.changePlayerSquares = this.changePlayerSquares.bind(this);
@@ -48,12 +46,6 @@ export default class Workspace extends Component {
         this.changeSquaresHistory = this.changeSquaresHistory.bind(this);
         this.toggleEraser = this.toggleEraser.bind(this);
         this.toggleColorSelector = this.toggleColorSelector.bind(this);
-    }
-
-    changePlayer(player) {
-        this.setState(state => ({
-            currentPlayer: player
-        }));
     }
 
     changePrimaryColor(color) {
@@ -132,7 +124,6 @@ export default class Workspace extends Component {
             <WorkspaceDiv>
                 <BrushControls 
                     currentPrimaryColor={this.state.primaryColor}
-                    currentPlayer={this.state.currentPlayer} 
                     currentPolyo={this.state.currentPolyo}
                     playerSquares={this.state.playerSquares}
                     isEraserOn={this.state.isEraserOn}
@@ -149,7 +140,6 @@ export default class Workspace extends Component {
                 />
                 <Board 
                     currentPrimaryColor={this.state.primaryColor}
-                    currentPlayer={this.state.currentPlayer}
                     currentPolyo={this.state.currentPolyo}
                     playerSquares={this.state.playerSquares}
                     isEraserOn={this.state.isEraserOn}
