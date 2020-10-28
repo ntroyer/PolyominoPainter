@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import SelectablePolyomino from './selectable-polyomino';
-import { polyominos } from '../../../../data/polyominos';
+import { polyominos } from '../../../data/polyominos';
 
 const SelectorDiv = styled.div`
     display: flex;

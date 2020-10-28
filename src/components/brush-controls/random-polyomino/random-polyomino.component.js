@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { polyominos } from '../../../../data/polyominos';
+import { polyominos } from '../../../data/polyominos';
 import Button from 'react-bootstrap/Button';
 
 export default class RandomPolyomino extends Component {

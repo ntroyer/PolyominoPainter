@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import Board from "./board/board.component";
-import PlayerTest from "./debug/player-test.component";
+import PlayerTest from "./brush-controls/player-test.component";
 import ImagePreview from "./image-preview/image-preview.component";
 
-const Game = styled.div`
+const WorkspaceDiv = styled.div`
     display: flex;
     justify-content: center;
     height: 95.8vh;
 `;
 
-export default class NewGame extends Component {
+export default class Workspace extends Component {
     constructor(props) {
         super();
 
@@ -113,7 +113,7 @@ export default class NewGame extends Component {
 
     render() {
         return (
-            <Game>
+            <WorkspaceDiv>
                 <PlayerTest 
                     currentPrimaryColor={this.state.primaryColor}
                     currentPlayer={this.state.currentPlayer} 
@@ -147,7 +147,7 @@ export default class NewGame extends Component {
                     playerSquares={this.state.playerSquares}
                     boardX={this.state.xSquares}
                     boardY={this.state.ySquares} />
-            </Game>
+            </WorkspaceDiv>
         )
     }
 }
