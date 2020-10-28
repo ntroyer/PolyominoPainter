@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { MdRotateLeft, MdRotateRight, MdFlip, MdRedo, MdUndo } from 'react-icons/md';
+import { MdRotateLeft, MdRotateRight, MdFlip, MdRedo, MdUndo, MdColorize } from 'react-icons/md';
 import ReactTooltip from "react-tooltip";
 import PolyominoPreview from './polyomino-preview/polyomino-preview.component';
 import PolyominoSelector from './polyomino-selector/polyomino-selector';
@@ -16,6 +16,10 @@ const RotateLeft = styled(MdRotateLeft)`
 const RotateRight = styled(MdRotateRight)`
     cursor: pointer;
 `;
+
+const ColorSelect = styled(MdColorize)`
+    cursor: pointer;
+`
 
 const FlipX = styled(MdFlip)`
     transform: rotate(90deg);
@@ -125,8 +129,10 @@ export default class BrushControls extends Component {
                 </PolyominoSelectorContainer>
                 <PolyominoCanvasControls>
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} />
-                    <ToggleEraser onToggleEraser={this.props.onToggleEraser} />
-                    <Button  variant="secondary" onClick={this.clearPolyomino}>Clear Brush</Button>
+                    <ToggleEraser 
+                        onToggleEraser={this.props.onToggleEraser} 
+                        isEraserOn={this.props.isEraserOn} />
+                    <Button variant="secondary" onClick={this.clearPolyomino}>Clear Brush</Button>
                 </PolyominoCanvasControls>
                 <PolyominoMovementControls>
                     <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} size={this.props.matIconSize} />
@@ -135,6 +141,7 @@ export default class BrushControls extends Component {
                     <FlipY data-tip="Flip Vertically" onClick={this.flipY} size={this.props.matIconSize} />
                     <Undo data-tip="Undo Brush Change" onClick={this.undoPolyo} size={this.props.matIconSize} />
                     <Redo data-tip="Redo Brush Change" onClick={this.redoPolyo} size={this.props.matIconSize} />
+                    <ColorSelect data-tip="Toggle Color Selector" onClick={this.props.onToggleColorSelector} size={this.props.matIconSize} />
                 </PolyominoMovementControls>
                 <ReactTooltip />
             </Controls>

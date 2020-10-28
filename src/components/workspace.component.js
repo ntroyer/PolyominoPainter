@@ -25,6 +25,7 @@ export default class Workspace extends Component {
             xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
             ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y),
             isEraserOn: false,
+            isColorSelectorOn: false,
             playerSquaresHistory: [
                 []
             ],
@@ -46,6 +47,7 @@ export default class Workspace extends Component {
         this.changePolyoHistory = this.changePolyoHistory.bind(this);
         this.changeSquaresHistory = this.changeSquaresHistory.bind(this);
         this.toggleEraser = this.toggleEraser.bind(this);
+        this.toggleColorSelector = this.toggleColorSelector.bind(this);
     }
 
     changePlayer(player) {
@@ -105,10 +107,24 @@ export default class Workspace extends Component {
         }
     }
 
-    toggleEraser(isEraserOn) {
+    toggleEraser() {
         this.setState(state => ({
-            isEraserOn: isEraserOn
-        }))
+            isEraserOn: !this.state.isEraserOn
+        }));
+
+        if (this.state.isColorSelectorOn) {
+            this.toggleColorSelector();
+        }
+    }
+
+    toggleColorSelector() {
+        this.setState(state => ({
+            isColorSelectorOn: !this.state.isColorSelectorOn
+        }));
+
+        if (this.state.isEraserOn) {
+            this.toggleEraser();
+        }
     }
 
     render() {
@@ -120,11 +136,13 @@ export default class Workspace extends Component {
                     currentPolyo={this.state.currentPolyo}
                     playerSquares={this.state.playerSquares}
                     isEraserOn={this.state.isEraserOn}
+                    isColorSelectorOn={this.state.isColorSelectorOn}
                     onPrimaryColorChange={this.changePrimaryColor}
                     onPlayerChange={this.changePlayer} 
                     onPlayerSquaresChange={this.changePlayerSquares}
                     onPolyoChange={this.changePolyo}
                     onToggleEraser={this.toggleEraser}
+                    onToggleColorSelector={this.toggleColorSelector}
                     onUndoPolyo={this.changePolyoHistory}
                     onRedoPolyo={this.changePolyoHistory}
                     matIconSize={this.state.matIconSize}
@@ -135,7 +153,10 @@ export default class Workspace extends Component {
                     currentPolyo={this.state.currentPolyo}
                     playerSquares={this.state.playerSquares}
                     isEraserOn={this.state.isEraserOn}
+                    isColorSelectorOn={this.state.isColorSelectorOn}
+                    onPrimaryColorChange={this.changePrimaryColor}
                     onPlayerSquaresChange={this.changePlayerSquares}
+                    onToggleColorSelector={this.toggleColorSelector}
                     matIconSize={this.state.matIconSize}
                     onBoardSizeChange={this.changeBoardSize}
                     onUndoCanvas={this.changeSquaresHistory}

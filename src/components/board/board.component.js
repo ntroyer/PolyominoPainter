@@ -111,17 +111,29 @@ export default class Board extends Component {
         this.props.onPlayerSquaresChange(currentPlayerSquares);
     }
 
-    assignColorToSquares(color) {
+    getColorFromSquare(assignedColor) {
+        if (assignedColor === 0) {
+            // todo - maybe display an alert telling the user to select a color
+            return;
+        }
+        this.props.onPrimaryColorChange(assignedColor);
+        this.props.onToggleColorSelector();
+    }
+
+    assignColorToSquares(newColor, assignedColor) {
+        if (this.props.isColorSelectorOn) {
+            this.getColorFromSquare(assignedColor);
+            return;
+        }
         if (this.props.isEraserOn) {
             this.eraseSquares();
             return;
         }
 
-        // todo - refactor the below to make it look a little nicer...
         let currentPlayerSquares = Object.assign([], this.props.playerSquares);
 
         this.state.currentComputedPolyo.map((item) => {
-            currentPlayerSquares[item[0] + ',' + item[1]] = color;
+            currentPlayerSquares[item[0] + ',' + item[1]] = newColor;
             return true;
         });
 
@@ -144,6 +156,9 @@ export default class Board extends Component {
     }
 
     isSquareBeingChecked(row, col) {
+        if (this.props.isColorSelectorOn) {
+            return false;
+        }
         const stringifiedCoords = JSON.stringify([row, col]);
         return (this.state.currentComputedPolyo.some(item => (JSON.stringify(item) === stringifiedCoords)));
     }
@@ -170,8 +185,10 @@ export default class Board extends Component {
                 currentColor={this.props.currentPrimaryColor}
                 assignedColor={this.getSquareAssignment(row, col)}
                 isBeingChecked={this.isSquareBeingChecked(row, col)}
+                isColorSelectorOn={this.props.isColorSelectorOn}
+                isEraserOn={this.props.isEraserOn}
                 onSetCurrentCenter={() => this.setCurrentCenter(row, col)}
-                assignColorToSquares={() => this.assignColorToSquares(this.props.currentPrimaryColor)}
+                assignColorToSquares={() => this.assignColorToSquares(this.props.currentPrimaryColor, this.getSquareAssignment(row, col))}
                 mouseIsUp={this.mouseIsUp}
                 mouseIsDown={this.mouseIsDown}
             />
