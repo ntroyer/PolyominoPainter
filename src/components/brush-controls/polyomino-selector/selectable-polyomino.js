@@ -20,10 +20,6 @@ const PolyominoGrid = styled.table`
 
 export default class SelectablePolyomino extends Component {
     isSquareInCurrentPolyo(row, col) {
-        if (row === 0 && col === 0) {
-            return true;
-        }
-
         return Array.isArray(
             this.props.polyomino.find(
                 (item) => (item[0] === row && item[1] === col)
