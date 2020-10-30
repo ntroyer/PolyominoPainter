@@ -8,6 +8,8 @@ import PrimaryPicker from './colorpicker/primary-colorpicker.component';
 import RandomPolyomino from './random-polyomino/random-polyomino.component';
 import ToggleEraser from './eraser/toggle-eraser.component';
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const RotateLeft = styled(MdRotateLeft)`
     cursor: pointer;
@@ -108,6 +110,10 @@ export default class BrushControls extends Component {
         this.props.onRedoPolyo(false);
     }
 
+    setPolyoByName(name) {
+        this.props.onPolyoChangeByName(name);
+    }
+
     render() {
         return (
             <Controls>
@@ -133,6 +139,13 @@ export default class BrushControls extends Component {
                         onToggleEraser={this.props.onToggleEraser} 
                         isEraserOn={this.props.isEraserOn} />
                     <Button variant="secondary" onClick={this.clearPolyomino}>Clear Brush</Button>
+                        <DropdownButton id="select-brush" title="Select Brush" onSelect={(name) => this.setPolyoByName(name)}>
+                            {this.props.polyoList.map(
+                                (brush) => (
+                                    <Dropdown.Item eventKey={brush.name}>{brush.name}</Dropdown.Item>
+                                )
+                            )}
+                        </DropdownButton>
                 </PolyominoCanvasControls>
                 <PolyominoMovementControls>
                     <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} size={this.props.matIconSize} />

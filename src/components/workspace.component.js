@@ -30,11 +30,13 @@ export default class Workspace extends Component {
             currentPolyoHistory: [defaultPolyo.data],
             canvasStep: 0,
             currentPolyoStep: 0,
-            matIconSize: 50
+            matIconSize: 50,
+            polyoList: polyominos
         }
 
         this.changePrimaryColor = this.changePrimaryColor.bind(this);
         this.changePolyo = this.changePolyo.bind(this);
+        this.changePolyoByName = this.changePolyoByName.bind(this);
         this.changeCanvas = this.changeCanvas.bind(this);
         this.changeBoardSize = this.changeBoardSize.bind(this);
         this.changePolyoHistory = this.changePolyoHistory.bind(this);
@@ -56,6 +58,12 @@ export default class Workspace extends Component {
             currentPolyoHistory: history.concat([polyo]),
             currentPolyoStep: this.state.currentPolyoStep + 1
         }));
+    }
+
+    changePolyoByName(name) {
+        this.changePolyo(this.state.polyoList.filter(function(polyomino) {
+            return polyomino.name == name;
+        })[0].data);
     }
 
     changeCanvas(squares) {
@@ -123,10 +131,12 @@ export default class Workspace extends Component {
                     canvas={this.state.canvas}
                     isEraserOn={this.state.isEraserOn}
                     isColorSelectorOn={this.state.isColorSelectorOn}
+                    polyoList={this.state.polyoList}
                     onPrimaryColorChange={this.changePrimaryColor}
                     onPlayerChange={this.changePlayer} 
                     onCanvasChange={this.changeCanvas}
                     onPolyoChange={this.changePolyo}
+                    onPolyoChangeByName={this.changePolyoByName}
                     onToggleEraser={this.toggleEraser}
                     onToggleColorSelector={this.toggleColorSelector}
                     onUndoPolyo={this.changePolyoHistory}
