@@ -141,9 +141,9 @@ export default class Board extends Component {
     }
 
     computePolyoCoords(row, col) {
-        return [[row, col]].concat(this.props.currentPolyo.map((value) => {
+        return this.props.currentPolyo.map((value) => {
             return [(row + value[0]), (col + value[1])]
-        }));
+        });
     }
 
     getSquareAssignment(row, col) {

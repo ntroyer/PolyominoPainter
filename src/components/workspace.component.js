@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Board from "./board/board.component";
 import BrushControls from "./brush-controls/brush-controls.component";
 import ImagePreview from "./image-preview/image-preview.component";
+import { polyominos } from '../data/polyominos';
 
 const WorkspaceDiv = styled.div`
     display: flex;
@@ -15,24 +16,18 @@ export default class Workspace extends Component {
     constructor(props) {
         super();
 
+        const defaultPolyo = polyominos[Math.floor(Math.random() * polyominos.length)];
+
         this.state = {
-            currentPolyo: [
-                [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
-            ],
+            currentPolyo: defaultPolyo.data,
             primaryColor: "blue",
             canvas: [],
             xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
             ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y),
             isEraserOn: false,
             isColorSelectorOn: false,
-            canvasHistory: [
-                []
-            ],
-            currentPolyoHistory: [
-                [
-                    [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
-                ]
-            ],
+            canvasHistory: [[]],
+            currentPolyoHistory: [defaultPolyo.data],
             canvasStep: 0,
             currentPolyoStep: 0,
             matIconSize: 50

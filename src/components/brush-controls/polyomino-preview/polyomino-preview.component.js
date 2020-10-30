@@ -9,10 +9,6 @@ const BoardGrid = styled.table`
 
 export default class PolyominoPreview extends Component {
     isSquareInCurrentPolyo(row, col) {
-        if (this.isSquareCenter(row, col)) {
-            return true;
-        }
-
         return Array.isArray(
             this.props.currentPolyo.find(
                 (item) => (item[0] === row && item[1] === col)

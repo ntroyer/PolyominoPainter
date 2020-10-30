@@ -2,6 +2,7 @@ export const polyominos = [
     {
         name: 'lthing',
         data: [
+            [0, 0],
             [-1, 1],
             [0, 1],
             [0, -1],
@@ -12,6 +13,7 @@ export const polyominos = [
     {
         name: 'tshape',
         data: [
+            [0, 0],
             [-1, -1],
             [-1, 0],
             [-1, 1],
@@ -22,6 +24,7 @@ export const polyominos = [
     {
         name: 'stairs',
         data: [
+            [0, 0],
             [-1, -1],
             [0, -1],
             [1, 0],
@@ -32,6 +35,7 @@ export const polyominos = [
     {
         name: 'doublel',
         data: [
+            [0, 0],
             [-1, -1],
             [-1, 0],
             [1, 0],
@@ -42,6 +46,7 @@ export const polyominos = [
     {
         name: 'line',
         data: [
+            [0, 0],
             [-2, 0],
             [-1, 0],
             [1, 0],
@@ -51,6 +56,7 @@ export const polyominos = [
     {
         name: 'handman',
         data: [
+            [0, 0],
             [0, -1],
             [0, 1],
             [0, 2],
