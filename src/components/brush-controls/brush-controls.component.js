@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { MdRotateLeft, MdRotateRight, MdFlip, MdRedo, MdUndo, MdColorize } from 'react-icons/md';
+import { FaEraser } from 'react-icons/fa';
 import ReactTooltip from "react-tooltip";
 import PolyominoPreview from './polyomino-preview/polyomino-preview.component';
 import PolyominoSelector from './polyomino-selector/polyomino-selector';
 import PrimaryPicker from './colorpicker/primary-colorpicker.component';
 import RandomPolyomino from './random-polyomino/random-polyomino.component';
-import ToggleEraser from './eraser/toggle-eraser.component';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -21,6 +21,12 @@ const RotateRight = styled(MdRotateRight)`
 
 const ColorSelect = styled(MdColorize)`
     cursor: pointer;
+    color: ${props => (props.color)};
+`
+
+const Eraser = styled(FaEraser)`
+    cursor: pointer;
+    color: ${props => (props.color)};
 `
 
 const FlipX = styled(MdFlip)`
@@ -72,6 +78,8 @@ export default class BrushControls extends Component {
         this.undoPolyo = this.undoPolyo.bind(this);
         this.redoPolyo = this.redoPolyo.bind(this);
         this.clearPolyomino = this.clearPolyomino.bind(this);
+        this.getColorSelectColor = this.getColorSelectColor.bind(this);
+        this.getEraserColor = this.getEraserColor.bind(this);
     }
 
     rotateLeft() {
@@ -114,6 +122,20 @@ export default class BrushControls extends Component {
         this.props.onPolyoChangeByName(name);
     }
 
+    getColorSelectColor() {
+        if (this.props.isColorSelectorOn) {
+            return "gray";
+        }
+        return "black";
+    }
+
+    getEraserColor() {
+        if (this.props.isEraserOn) {
+            return "gray";
+        }
+        return "black";
+    }
+
     render() {
         return (
             <Controls>
@@ -135,9 +157,6 @@ export default class BrushControls extends Component {
                 </PolyominoSelectorContainer>
                 <PolyominoCanvasControls>
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} />
-                    <ToggleEraser 
-                        onToggleEraser={this.props.onToggleEraser} 
-                        isEraserOn={this.props.isEraserOn} />
                     <Button variant="secondary" onClick={this.clearPolyomino}>Clear Brush</Button>
                         <DropdownButton id="select-brush" title="Select Brush" onSelect={(name) => this.setPolyoByName(name)}>
                             {this.props.polyoList.map(
@@ -154,7 +173,10 @@ export default class BrushControls extends Component {
                     <FlipY data-tip="Flip Vertically" onClick={this.flipY} size={this.props.matIconSize} />
                     <Undo data-tip="Undo Brush Change" onClick={this.undoPolyo} size={this.props.matIconSize} />
                     <Redo data-tip="Redo Brush Change" onClick={this.redoPolyo} size={this.props.matIconSize} />
-                    <ColorSelect data-tip="Toggle Color Selector" onClick={this.props.onToggleColorSelector} size={this.props.matIconSize} />
+                </PolyominoMovementControls>
+                <PolyominoMovementControls>
+                    <ColorSelect data-tip="Toggle Color Selector" onClick={this.props.onToggleColorSelector} size={this.props.matIconSize} color={this.getColorSelectColor} />
+                    <Eraser data-tip="Toggle Eraser" onClick={this.props.onToggleEraser} size={this.props.matIconSize} color={this.getEraserColor} />
                 </PolyominoMovementControls>
                 <ReactTooltip />
             </Controls>
