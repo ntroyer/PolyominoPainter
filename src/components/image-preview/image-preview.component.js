@@ -9,10 +9,6 @@ const ImagePreviewCanvas = styled.div`
 `;
 
 export default class ImagePreview extends Component {
-    constructor(props) {
-        super();
-    }
-
     render() {
         return (
             <ImagePreviewCanvas>

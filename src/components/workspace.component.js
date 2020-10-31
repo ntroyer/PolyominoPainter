@@ -62,7 +62,7 @@ export default class Workspace extends Component {
 
     changePolyoByName(name) {
         this.changePolyo(this.state.polyoList.filter(function(polyomino) {
-            return polyomino.name == name;
+            return polyomino.name === name;
         })[0].data);
     }
 
