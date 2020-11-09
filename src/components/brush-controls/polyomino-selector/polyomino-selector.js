@@ -4,7 +4,7 @@ import SelectablePolyomino from './selectable-polyomino';
 
 const SelectorDiv = styled.div`
     display: flex;
-    height: 100px;
+    height: 7rem;
     width: 300px;
     outline: 2px solid black;
     background-color: white;

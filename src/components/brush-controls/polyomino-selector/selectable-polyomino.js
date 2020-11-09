@@ -12,9 +12,10 @@ const SelectablePolyominoBlock = styled.td`
 const PolyominoGrid = styled.table`
     width: 100px;
     height: 100px;
+    border-collapse: separate;
 
     &:not(:last-child) {
-        border-right: 1px dotted black;
+        border-right: 2px dotted black;
     }
 `;
 
