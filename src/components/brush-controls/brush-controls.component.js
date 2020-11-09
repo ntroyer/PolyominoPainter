@@ -152,19 +152,21 @@ export default class BrushControls extends Component {
                     boardY={5} />
                 <PolyominoSelectorContainer>
                     <PolyominoSelector 
+                        selectablePolyos={this.props.selectablePolyos}
                         currentPrimaryColor={this.props.currentPrimaryColor}
-                        onPolyoChange={this.props.onPolyoChange} />
+                        onPolyoChange={this.props.onPolyoChange} 
+                        onUserPolyoChange={this.props.onUserPolyoChange}/>
                 </PolyominoSelectorContainer>
                 <PolyominoCanvasControls>
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} />
                     <Button variant="secondary" onClick={this.clearPolyomino}>Clear Brush</Button>
-                        <DropdownButton id="select-brush" title="Select Brush" onSelect={(name) => this.setPolyoByName(name)}>
-                            {this.props.polyoList.map(
-                                (brush) => (
-                                    <Dropdown.Item eventKey={brush.name}>{brush.name}</Dropdown.Item>
-                                )
-                            )}
-                        </DropdownButton>
+                    <DropdownButton id="select-brush" title="Select Brush" onSelect={(name) => this.setPolyoByName(name)}>
+                        {this.props.polyoList.map(
+                            (brush) => (
+                                <Dropdown.Item eventKey={brush.name}>{brush.name}</Dropdown.Item>
+                            )
+                        )}
+                    </DropdownButton>
                 </PolyominoCanvasControls>
                 <PolyominoMovementControls>
                     <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} size={this.props.matIconSize} />

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import SelectablePolyomino from './selectable-polyomino';
-import { polyominos } from '../../../data/polyominos';
 
 const SelectorDiv = styled.div`
     display: flex;
@@ -13,42 +12,19 @@ const SelectorDiv = styled.div`
 `;
 
 export default class PolyominoSelector extends Component {
-    constructor(props) {
-        super();
-
-        this.state = {
-            polyominos: this.shufflePolyominos().slice(0, 3)
-        }
-    }
-
-    setCurrentPolyomino(polyo) {
-        this.props.onPolyoChange(polyo);
-    }
-
-    shufflePolyominos() {
-        let shuffledPolyominos = polyominos;
-        let currentIndex = shuffledPolyominos.length, tempValue, randomIndex;
-
-        while (0 !== currentIndex) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            tempValue = shuffledPolyominos[currentIndex];
-            shuffledPolyominos[currentIndex] = shuffledPolyominos[randomIndex];
-            shuffledPolyominos[randomIndex] = tempValue;
-        }
-
-        return shuffledPolyominos;
+    setCurrentPolyomino(polyo, key) {
+        this.props.onUserPolyoChange(key);
+        this.props.onPolyoChange(polyo, true);
     }
 
     render() {
         return (
             <SelectorDiv>
                 {
-                    this.state.polyominos.map((polyo) => (
+                    this.props.selectablePolyos.map((polyo, key) => (
                         <SelectablePolyomino 
                             key={'selectable_' + polyo.name}
-                            setCurrentPolyomino={() => this.setCurrentPolyomino(polyo.data)}
+                            setCurrentPolyomino={() => this.setCurrentPolyomino(polyo.data, key)}
                             currentPrimaryColor={this.props.currentPrimaryColor}
                             polyomino={polyo.data}
                         />

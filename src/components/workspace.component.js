@@ -20,6 +20,7 @@ export default class Workspace extends Component {
 
         this.state = {
             currentPolyo: defaultPolyo.data,
+            currentUserPolyoId: -1,
             primaryColor: "blue",
             canvas: [],
             xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
@@ -31,7 +32,8 @@ export default class Workspace extends Component {
             canvasStep: 0,
             currentPolyoStep: 0,
             matIconSize: 50,
-            polyoList: polyominos
+            polyoList: polyominos,
+            selectablePolyos: this.shufflePolyominos().slice(0, 3)
         }
 
         this.changePrimaryColor = this.changePrimaryColor.bind(this);
@@ -41,6 +43,7 @@ export default class Workspace extends Component {
         this.changeBoardSize = this.changeBoardSize.bind(this);
         this.changePolyoHistory = this.changePolyoHistory.bind(this);
         this.changeSquaresHistory = this.changeSquaresHistory.bind(this);
+        this.changeUserPolyo = this.changeUserPolyo.bind(this);
         this.toggleEraser = this.toggleEraser.bind(this);
         this.toggleColorSelector = this.toggleColorSelector.bind(this);
     }
@@ -51,12 +54,19 @@ export default class Workspace extends Component {
         }));
     }
 
-    changePolyo(polyo) {
+    changePolyo(polyo, selected = false) {
         const history = this.state.currentPolyoHistory.slice(0, this.state.currentPolyoStep + 1);
+        const polyos = Object.assign(this.state.selectablePolyos);
+
+        if (!selected && this.state.currentUserPolyoId > -1) {
+            polyos[this.state.currentUserPolyoId].data = polyo;
+        }
+
         this.setState(state => ({
             currentPolyo: polyo,
             currentPolyoHistory: history.concat([polyo]),
-            currentPolyoStep: this.state.currentPolyoStep + 1
+            currentPolyoStep: this.state.currentPolyoStep + 1,
+            selectablePolyos: polyos
         }));
     }
 
@@ -102,6 +112,12 @@ export default class Workspace extends Component {
         }
     }
 
+    changeUserPolyo(id) {
+        this.setState(state => ({
+            currentUserPolyoId: id
+        }));
+    }
+
     toggleEraser() {
         this.setState(state => ({
             isEraserOn: !this.state.isEraserOn
@@ -122,6 +138,22 @@ export default class Workspace extends Component {
         }
     }
 
+    shufflePolyominos() {
+        let shuffledPolyominos = polyominos;
+        let currentIndex = shuffledPolyominos.length, tempValue, randomIndex;
+
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            tempValue = shuffledPolyominos[currentIndex];
+            shuffledPolyominos[currentIndex] = shuffledPolyominos[randomIndex];
+            shuffledPolyominos[randomIndex] = tempValue;
+        }
+
+        return shuffledPolyominos;
+    }
+
     render() {
         return (
             <WorkspaceDiv>
@@ -132,6 +164,7 @@ export default class Workspace extends Component {
                     isEraserOn={this.state.isEraserOn}
                     isColorSelectorOn={this.state.isColorSelectorOn}
                     polyoList={this.state.polyoList}
+                    selectablePolyos={this.state.selectablePolyos}
                     onPrimaryColorChange={this.changePrimaryColor}
                     onPlayerChange={this.changePlayer} 
                     onCanvasChange={this.changeCanvas}
@@ -140,6 +173,7 @@ export default class Workspace extends Component {
                     onToggleEraser={this.toggleEraser}
                     onToggleColorSelector={this.toggleColorSelector}
                     onUndoPolyo={this.changePolyoHistory}
+                    onUserPolyoChange={this.changeUserPolyo}
                     onRedoPolyo={this.changePolyoHistory}
                     matIconSize={this.state.matIconSize}
                 />
