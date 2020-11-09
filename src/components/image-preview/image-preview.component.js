@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Canvas from './canvas/canvas.component';
 
 const ImagePreviewCanvas = styled.div`
-    width: 15%;
+    width: 24rem;
     background-color: #e9ecef;
     padding: 10px;
 `;

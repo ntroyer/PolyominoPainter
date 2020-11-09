@@ -63,7 +63,7 @@ const PolyominoMovementControls = styled.div`
 
 const Controls = styled.div`
     padding: 10px;
-    width: 15%;
+    width: 24rem;
     background-color: #e9ecef;
 `;
 

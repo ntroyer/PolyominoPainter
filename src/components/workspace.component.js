@@ -8,8 +8,12 @@ import { polyominos } from '../data/polyominos';
 
 const WorkspaceDiv = styled.div`
     display: flex;
-    justify-content: center;
-    height: 95.8vh;
+    justify-content: space-between;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 `;
 
 export default class Workspace extends Component {
