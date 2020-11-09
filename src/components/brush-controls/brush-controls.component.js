@@ -154,8 +154,9 @@ export default class BrushControls extends Component {
                     <PolyominoSelector 
                         selectablePolyos={this.props.selectablePolyos}
                         currentPrimaryColor={this.props.currentPrimaryColor}
+                        currentUserPolyoId={this.props.currentUserPolyoId}
                         onPolyoChange={this.props.onPolyoChange} 
-                        onUserPolyoChange={this.props.onUserPolyoChange}/>
+                        onUserPolyoChange={this.props.onUserPolyoChange} />
                 </PolyominoSelectorContainer>
                 <PolyominoCanvasControls>
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} polyominos={this.props.polyoList}/>

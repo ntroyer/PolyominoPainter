@@ -164,6 +164,7 @@ export default class Workspace extends Component {
                 <BrushControls 
                     currentPrimaryColor={this.state.primaryColor}
                     currentPolyo={this.state.currentPolyo}
+                    currentUserPolyoId={this.state.currentUserPolyoId}
                     canvas={this.state.canvas}
                     isEraserOn={this.state.isEraserOn}
                     isColorSelectorOn={this.state.isColorSelectorOn}

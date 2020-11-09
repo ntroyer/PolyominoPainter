@@ -12,6 +12,10 @@ const SelectorDiv = styled.div`
 `;
 
 export default class PolyominoSelector extends Component {
+    getIsSelected(key) {
+        return key === this.props.currentUserPolyoId;
+    }
+
     setCurrentPolyomino(polyo, key) {
         this.props.onUserPolyoChange(key);
         this.props.onPolyoChange(polyo, true);
@@ -24,6 +28,7 @@ export default class PolyominoSelector extends Component {
                     this.props.selectablePolyos.map((polyo, key) => (
                         <SelectablePolyomino 
                             key={'selectable_' + polyo.name}
+                            isCurrent={this.getIsSelected(key)}
                             setCurrentPolyomino={() => this.setCurrentPolyomino(polyo.data, key)}
                             currentPrimaryColor={this.props.currentPrimaryColor}
                             polyomino={polyo.data}

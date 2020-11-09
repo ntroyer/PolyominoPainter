@@ -13,9 +13,10 @@ const PolyominoGrid = styled.table`
     width: 100px;
     height: 100px;
     border-collapse: separate;
+    border: ${props => (props.isCurrent ? "2px dotted red" : "0")};
 
     &:not(:last-child) {
-        border-right: 2px dotted black;
+        border-right: ${props => (props.isCurrent ? "2px dotted red" : "2px dotted black")};
     }
 `;
 
@@ -59,7 +60,8 @@ export default class SelectablePolyomino extends Component {
     render() {
         return (
             <PolyominoGrid 
-                onClick={() => this.props.setCurrentPolyomino(this.props.polyomino)}>
+                onClick={() => this.props.setCurrentPolyomino(this.props.polyomino)}
+                isCurrent={this.props.isCurrent}>
                 <tbody>
                 {
                     [...Array(5)].map((_, row) => this.renderRow(row))
