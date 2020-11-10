@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { MdZoomOutMap, MdFullscreenExit, MdRedo, MdUndo } from 'react-icons/md';
+import { MdRedo, MdUndo } from 'react-icons/md';
 import Square from './square.component';
 import Button from 'react-bootstrap/Button';
 
@@ -23,13 +23,13 @@ const CanvasControls = styled.div`
     text-align: center;
 `;
 
-const IncreaseGrid = styled(MdZoomOutMap)`
+/*const IncreaseGrid = styled(MdZoomOutMap)`
     cursor: pointer;
 `;
 
 const DecreaseGrid = styled(MdFullscreenExit)`
     cursor: pointer;
-`;
+`;*/
 
 const Redo = styled(MdRedo)`
     cursor: pointer;
@@ -44,8 +44,6 @@ const BoardWrapper = styled.div`
 `;
 
 export default class Board extends Component {
-    // as a general rule of thumb, if you are inclined to add a variable to a square, add it to the board instead
-
     constructor(props) {
         super();
 

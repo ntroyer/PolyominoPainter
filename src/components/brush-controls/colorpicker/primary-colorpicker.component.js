@@ -11,7 +11,7 @@ export default class PrimaryPicker extends Component {
         super();
         
         this.state = {
-            color: 'blue'
+            color: props.color
         }
 
         this.handleChangeComplete = this.handleChangeComplete.bind(this);

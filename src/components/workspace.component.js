@@ -21,23 +21,34 @@ export default class Workspace extends Component {
         super();
 
         const defaultPolyo = polyominos[Math.floor(Math.random() * polyominos.length)];
+        const color = localStorage.getItem('color1') ? localStorage.getItem('color1') : "blue";
+        const userPolyo = localStorage.getItem('userpolyo') ? Number(localStorage.getItem('userpolyo')) : -1;
+
+        const canvas = [];
+        const canvasHistory = [[]];
+        const canvasStep = 0;
+
+        const polyo = localStorage.getItem('polyo') ? JSON.parse(localStorage.getItem('polyo')) : defaultPolyo.data;
+        const polyoHistory = [defaultPolyo.data];
+        const polyoStep = 0;
+        const selectablePolyos = localStorage.getItem('selectablepolyos') ? JSON.parse(localStorage.getItem('selectablepolyos')) : this.shufflePolyominos().slice(0, 3);
 
         this.state = {
-            currentPolyo: defaultPolyo.data,
-            currentUserPolyoId: -1,
-            primaryColor: "blue",
-            canvas: [],
+            currentPolyo: polyo,
+            currentUserPolyoId: userPolyo,
+            primaryColor: color,
+            canvas: canvas,
             xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
             ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y),
             isEraserOn: false,
             isColorSelectorOn: false,
-            canvasHistory: [[]],
-            currentPolyoHistory: [defaultPolyo.data],
-            canvasStep: 0,
-            currentPolyoStep: 0,
+            canvasHistory: canvasHistory,
+            currentPolyoHistory: polyoHistory,
+            canvasStep: canvasStep,
+            currentPolyoStep: polyoStep,
             matIconSize: 50,
             polyoList: polyominos,
-            selectablePolyos: this.shufflePolyominos().slice(0, 3)
+            selectablePolyos: selectablePolyos
         }
 
         this.changePrimaryColor = this.changePrimaryColor.bind(this);
@@ -53,6 +64,7 @@ export default class Workspace extends Component {
     }
 
     changePrimaryColor(color) {
+        localStorage.setItem('color1', color);
         this.setState(state => ({
             primaryColor: color
         }));
@@ -65,6 +77,11 @@ export default class Workspace extends Component {
         if (!selected && this.state.currentUserPolyoId > -1) {
             polyos[this.state.currentUserPolyoId].data = polyo;
         }
+
+        localStorage.setItem('polyo', JSON.stringify(polyo));
+        // localStorage.setItem('polyohist', JSON.stringify(history.concat([polyo])));
+        // localStorage.setItem('polyostep', this.state.currentPolyoStep + 1);
+        localStorage.setItem('selectablepolyos', JSON.stringify(polyos));
 
         this.setState(state => ({
             currentPolyo: polyo,
@@ -82,6 +99,10 @@ export default class Workspace extends Component {
 
     changeCanvas(squares) {
         const history = this.state.canvasHistory.slice(0, this.state.canvasStep + 1);
+        // localStorage.setItem('canvas', JSON.stringify(squares));
+        // localStorage.setItem('canvashist', JSON.stringify(history.concat([squares])));
+        // localStorage.setItem('canvasstep', this.state.canvasStep + 1);
+
         this.setState(state => ({
             canvas: squares,
             canvasHistory: history.concat([squares]),
@@ -98,6 +119,17 @@ export default class Workspace extends Component {
 
     changePolyoHistory(isUndo) {
         const newStep = isUndo ? this.state.currentPolyoStep - 1 : this.state.currentPolyoStep + 1;
+        console.log('asdf', this.state.currentPolyoHistory[newStep]);
+
+        localStorage.setItem('polyo', JSON.stringify(this.state.currentPolyoHistory[newStep]));
+        // localStorage.setItem('polyostep', newStep);
+
+        const polyos = Object.assign(this.state.selectablePolyos);
+
+        if (this.state.currentUserPolyoId > -1) {
+            polyos[this.state.currentUserPolyoId].data = this.state.currentPolyoHistory[newStep];
+        }
+
         if (typeof this.state.currentPolyoHistory[newStep] !== 'undefined') {
             this.setState(state => ({
                 currentPolyo: this.state.currentPolyoHistory[newStep],
@@ -108,6 +140,11 @@ export default class Workspace extends Component {
 
     changeSquaresHistory(isUndo) {
         const newStep = isUndo ? this.state.canvasStep - 1 : this.state.canvasStep + 1;
+        console.log('asdf', this.state.canvasHistory[newStep]);
+
+        // localStorage.setItem('canvas', JSON.stringify(this.state.canvasHistory[newStep]));
+        // localStorage.setItem('canvasstep', newStep);
+
         if (typeof this.state.canvasHistory[newStep] !== 'undefined') {
             this.setState(state => ({
                 canvas: this.state.canvasHistory[newStep],
@@ -117,14 +154,16 @@ export default class Workspace extends Component {
     }
 
     changeUserPolyo(id) {
+        localStorage.setItem('userpolyo', id);
         this.setState(state => ({
             currentUserPolyoId: id
         }));
     }
 
     toggleEraser() {
+        const newval = !this.state.isEraserOn
         this.setState(state => ({
-            isEraserOn: !this.state.isEraserOn
+            isEraserOn: newval
         }));
 
         if (this.state.isColorSelectorOn) {
@@ -133,8 +172,9 @@ export default class Workspace extends Component {
     }
 
     toggleColorSelector() {
+        const newval = !this.state.isColorSelectorOn
         this.setState(state => ({
-            isColorSelectorOn: !this.state.isColorSelectorOn
+            isColorSelectorOn: newval
         }));
 
         if (this.state.isEraserOn) {

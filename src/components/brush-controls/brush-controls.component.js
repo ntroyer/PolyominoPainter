@@ -143,6 +143,7 @@ export default class BrushControls extends Component {
                     Brush Controls
                 </p>
                 <PrimaryPicker 
+                    color={this.props.currentPrimaryColor}
                     onColorChange={this.props.onPrimaryColorChange} />
                 <PolyominoPreview 
                     currentPrimaryColor={this.props.currentPrimaryColor}
