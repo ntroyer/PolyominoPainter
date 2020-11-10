@@ -223,8 +223,6 @@ export default class Board extends Component {
                     <div style={{userSelect: 'none'}}>
                         Canvas Controls
                     </div>
-                    <IncreaseGrid data-tip="Increase Grid Size (max 20)" onClick={this.increaseGrid} size={this.props.matIconSize} />
-                    <DecreaseGrid data-tip="Decrease Grid Size (min 10)" onClick={this.decreaseGrid} size={this.props.matIconSize} />
                     <Undo data-tip="Undo Canvas Change" onClick={this.undoCanvas} size={this.props.matIconSize} />
                     <Redo data-tip="Redo Canvas Change" onClick={this.redoCanvas} size={this.props.matIconSize} />
                     <Button className="ml-2" variant="secondary" onClick={this.clearCanvas}>Clear Canvas</Button>

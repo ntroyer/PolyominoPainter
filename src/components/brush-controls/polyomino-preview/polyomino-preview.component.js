@@ -5,6 +5,16 @@ import PolyominoPreviewSquare from './polyomino-preview-square';
 
 const BoardGrid = styled.table`
     border-collapse: collapse;
+    margin: auto;
+    background-image:
+      linear-gradient(45deg, #f0f5f5 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #f0f5f5 75%),
+      linear-gradient(45deg, transparent 75%, #f0f5f5 75%),
+      linear-gradient(45deg, #f0f5f5 25%, #ffffff 25%);
+    
+    background-size: 60px 60px;
+
+    background-position: 0 0, 0 0, -30px -30px, 30px 30px;
 `;
 
 export default class PolyominoPreview extends Component {
