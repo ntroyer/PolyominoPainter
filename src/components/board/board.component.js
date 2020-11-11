@@ -98,7 +98,7 @@ export default class Board extends Component {
     }
 
     eraseSquares() {
-        let canvas = Object.assign([], this.props.canvas);
+        let canvas = Object.assign({}, this.props.canvas);
 
         this.state.currentComputedPolyo.map((item) => {
             let squareKey = item[0] + ',' + item[1];
@@ -128,7 +128,7 @@ export default class Board extends Component {
             return;
         }
 
-        let canvas = Object.assign([], this.props.canvas);
+        let canvas = Object.assign({}, this.props.canvas);
 
         this.state.currentComputedPolyo.map((item) => {
             canvas[item[0] + ',' + item[1]] = newColor;
