@@ -167,9 +167,6 @@ export default class Workspace extends Component {
 
     changeUserPolyo(id) {
         localStorage.setItem('userpolyo', id);
-        const history = this.state.currentPolyoHistory.slice(0, this.state.currentPolyoStep + 1);
-        const userIdHistory = this.state.userPolyoIdHistory.slice(0, this.state.currentPolyoStep + 1);
-        
         this.setState(state => ({
             currentUserPolyoId: id
         }));
