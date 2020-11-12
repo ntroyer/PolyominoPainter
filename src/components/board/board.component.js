@@ -78,19 +78,20 @@ export default class Board extends Component {
     }
 
     setCurrentCenter(row, col) {
+        const newPolyo = this.computePolyoCoords(row, col);
         this.setState(state => ({
-            currentComputedPolyo: this.computePolyoCoords(row, col)
+            currentComputedPolyo: newPolyo
         }));
 
         if (this.state.isMouseDown) {
-            this.assignColorToSquares(this.props.currentPrimaryColor)
+            this.assignColorToSquares(this.props.currentPrimaryColor, newPolyo);
         }
     }
 
-    eraseSquares() {
+    eraseSquares(polyo) {
         let canvas = Object.assign({}, this.props.canvas);
 
-        this.state.currentComputedPolyo.map((item) => {
+        polyo.map((item) => {
             let squareKey = item[0] + ',' + item[1];
             delete canvas[squareKey];
             return true;
@@ -108,19 +109,21 @@ export default class Board extends Component {
         this.props.onToggleColorSelector();
     }
 
-    assignColorToSquares(newColor, assignedColor) {
+    // todo - turn this into a "handler" method for code cleanliness sake...
+    assignColorToSquares(newColor, polyo, assignedColor) {
+        console.log('assigned color...', assignedColor);
         if (this.props.isColorSelectorOn) {
             this.getColorFromSquare(assignedColor);
             return;
         }
         if (this.props.isEraserOn) {
-            this.eraseSquares();
+            this.eraseSquares(polyo);
             return;
         }
 
         let canvas = Object.assign({}, this.props.canvas);
 
-        this.state.currentComputedPolyo.map((item) => {
+        polyo.map((item) => {
             canvas[item[0] + ',' + item[1]] = newColor;
             return true;
         });
@@ -139,7 +142,6 @@ export default class Board extends Component {
         if (this.props.canvas[rowColKey] && this.props.canvas[rowColKey] !== 'undefined') {
             return this.props.canvas[rowColKey];
         }
-
         return 0;
     }
 
@@ -152,9 +154,13 @@ export default class Board extends Component {
     }
 
     mouseIsDown() {
+        if (this.props.isColorSelectorOn) {
+            return false;
+        }
         this.setState(state => ({
             isMouseDown: true
         }));
+        this.assignColorToSquares(this.props.currentPrimaryColor, this.state.currentComputedPolyo);
     }
 
     mouseIsUp() {
@@ -176,7 +182,7 @@ export default class Board extends Component {
                 isColorSelectorOn={this.props.isColorSelectorOn}
                 isEraserOn={this.props.isEraserOn}
                 onSetCurrentCenter={() => this.setCurrentCenter(row, col)}
-                assignColorToSquares={() => this.assignColorToSquares(this.props.currentPrimaryColor, this.getSquareAssignment(row, col))}
+                assignColorToSquares={() => this.assignColorToSquares(this.props.currentPrimaryColor, this.state.currentComputedPolyo, this.getSquareAssignment(row, col))}
                 mouseIsUp={this.mouseIsUp}
                 mouseIsDown={this.mouseIsDown}
             />
