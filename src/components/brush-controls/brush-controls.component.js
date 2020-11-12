@@ -165,7 +165,7 @@ export default class BrushControls extends Component {
                     <DropdownButton id="select-brush" title="Select Brush" onSelect={(name) => this.setPolyoByName(name)}>
                         {this.props.polyoList.map(
                             (brush) => (
-                                <Dropdown.Item eventKey={brush.name}>{brush.name}</Dropdown.Item>
+                                <Dropdown.Item key={"brush_" + brush.name} eventKey={brush.name}>{brush.name}</Dropdown.Item>
                             )
                         )}
                     </DropdownButton>
