@@ -222,7 +222,7 @@ export default class Workspace extends Component {
                     polyoList={this.state.polyoList}
                     selectablePolyos={this.state.selectablePolyos}
                     onPrimaryColorChange={this.changePrimaryColor}
-                    onPlayerChange={this.changePlayer} 
+                    onPlayerChange={this.changePlayer}
                     onCanvasChange={this.changeCanvas}
                     onPolyoChange={this.changePolyo}
                     onPolyoChangeByName={this.changePolyoByName}

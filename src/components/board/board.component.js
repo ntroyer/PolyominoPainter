@@ -23,14 +23,6 @@ const CanvasControls = styled.div`
     text-align: center;
 `;
 
-/*const IncreaseGrid = styled(MdZoomOutMap)`
-    cursor: pointer;
-`;
-
-const DecreaseGrid = styled(MdFullscreenExit)`
-    cursor: pointer;
-`;*/
-
 const Redo = styled(MdRedo)`
     cursor: pointer;
 `;
@@ -39,9 +31,7 @@ const Undo = styled(MdUndo)`
     cursor: pointer;
 `;
 
-const BoardWrapper = styled.div`
-    width: 70%;
-`;
+const BoardWrapper = styled.div``;
 
 export default class Board extends Component {
     constructor(props) {
