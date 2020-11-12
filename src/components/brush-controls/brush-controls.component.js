@@ -139,9 +139,6 @@ export default class BrushControls extends Component {
     render() {
         return (
             <Controls>
-                <p>
-                    Brush Controls
-                </p>
                 <PrimaryPicker 
                     color={this.props.currentPrimaryColor}
                     onColorChange={this.props.onPrimaryColorChange} />
@@ -179,8 +176,8 @@ export default class BrushControls extends Component {
                     <Redo data-tip="Redo Brush Change" onClick={this.redoPolyo} size={this.props.matIconSize} />
                 </PolyominoMovementControls>
                 <PolyominoMovementControls>
-                    <ColorSelect data-tip="Toggle Color Selector" onClick={this.props.onToggleColorSelector} size={this.props.matIconSize} color={this.getColorSelectColor} />
-                    <Eraser data-tip="Toggle Eraser" onClick={this.props.onToggleEraser} size={this.props.matIconSize} color={this.getEraserColor} />
+                    <ColorSelect data-tip="Toggle Color Selector" onClick={this.props.onToggleColorSelector} size={this.props.matIconSize} color={this.getColorSelectColor()} />
+                    <Eraser data-tip="Toggle Eraser" onClick={this.props.onToggleEraser} size={this.props.matIconSize} color={this.getEraserColor()} />
                 </PolyominoMovementControls>
                 <ReactTooltip />
             </Controls>
