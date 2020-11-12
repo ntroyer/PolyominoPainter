@@ -4,7 +4,17 @@ import styled from 'styled-components';
 import Board from "./board/board.component";
 import BrushControls from "./brush-controls/brush-controls.component";
 import ImagePreview from "./image-preview/image-preview.component";
+import Button from 'react-bootstrap/Button';
 import { polyominos } from '../data/polyominos';
+
+const Crudbar = styled.div`
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #bfbfbf;
+    padding: 10px;
+`;
 
 const WorkspaceDiv = styled.div`
     display: flex;
@@ -63,6 +73,8 @@ export default class Workspace extends Component {
         this.changeUserPolyo = this.changeUserPolyo.bind(this);
         this.toggleEraser = this.toggleEraser.bind(this);
         this.toggleColorSelector = this.toggleColorSelector.bind(this);
+        this.newImage = this.newImage.bind(this);
+        this.resetCanvas = this.resetCanvas.bind(this);
     }
 
     changePrimaryColor(color) {
@@ -209,51 +221,82 @@ export default class Workspace extends Component {
         return shuffledPolyominos;
     }
 
+    newImage() {
+        // todo - add an are you sure prompt?
+        this.resetCanvas();
+    }
+
+    resetCanvas() {
+        this.setState(state => ({
+            canvas: {},
+            canvasHistory: [{}],
+            canvasStep: 0
+        }));
+    }
+
+    loadImage() {
+        console.log('load image coming soon...');
+    }
+
+    saveImage() {
+        console.log('save image coming soon...');
+    }
+
     render() {
         return (
-            <WorkspaceDiv>
-                <BrushControls 
-                    currentPrimaryColor={this.state.primaryColor}
-                    currentPolyo={this.state.currentPolyo}
-                    currentUserPolyoId={this.state.currentUserPolyoId}
-                    canvas={this.state.canvas}
-                    isEraserOn={this.state.isEraserOn}
-                    isColorSelectorOn={this.state.isColorSelectorOn}
-                    polyoList={this.state.polyoList}
-                    selectablePolyos={this.state.selectablePolyos}
-                    onPrimaryColorChange={this.changePrimaryColor}
-                    onPlayerChange={this.changePlayer}
-                    onCanvasChange={this.changeCanvas}
-                    onPolyoChange={this.changePolyo}
-                    onPolyoChangeByName={this.changePolyoByName}
-                    onToggleEraser={this.toggleEraser}
-                    onToggleColorSelector={this.toggleColorSelector}
-                    onUndoPolyo={this.changePolyoHistory}
-                    onUserPolyoChange={this.changeUserPolyo}
-                    onRedoPolyo={this.changePolyoHistory}
-                    matIconSize={this.state.matIconSize}
-                />
-                <Board 
-                    currentPrimaryColor={this.state.primaryColor}
-                    currentPolyo={this.state.currentPolyo}
-                    canvas={this.state.canvas}
-                    isEraserOn={this.state.isEraserOn}
-                    isColorSelectorOn={this.state.isColorSelectorOn}
-                    onPrimaryColorChange={this.changePrimaryColor}
-                    onCanvasChange={this.changeCanvas}
-                    onToggleColorSelector={this.toggleColorSelector}
-                    matIconSize={this.state.matIconSize}
-                    onBoardSizeChange={this.changeBoardSize}
-                    onUndoCanvas={this.changeSquaresHistory}
-                    onRedoCanvas={this.changeSquaresHistory}
-                    boardX={this.state.xSquares}
-                    boardY={this.state.ySquares}
-                />
-                <ImagePreview 
-                    canvas={this.state.canvas}
-                    boardX={this.state.xSquares}
-                    boardY={this.state.ySquares} />
-            </WorkspaceDiv>
+            <div>
+                <Crudbar>
+                    Polyomino Painter
+                    <div>
+                        <Button variant="secondary" onClick={this.newImage}>New Image</Button>
+                        <Button variant="secondary" onClick={this.loadImage}>Load Image</Button>
+                        <Button variant="secondary" onClick={this.saveImage}>Save Image</Button>
+                    </div>
+                </Crudbar>
+                <WorkspaceDiv>
+                    <BrushControls 
+                        currentPrimaryColor={this.state.primaryColor}
+                        currentPolyo={this.state.currentPolyo}
+                        currentUserPolyoId={this.state.currentUserPolyoId}
+                        canvas={this.state.canvas}
+                        isEraserOn={this.state.isEraserOn}
+                        isColorSelectorOn={this.state.isColorSelectorOn}
+                        polyoList={this.state.polyoList}
+                        selectablePolyos={this.state.selectablePolyos}
+                        onPrimaryColorChange={this.changePrimaryColor}
+                        onPlayerChange={this.changePlayer}
+                        onCanvasChange={this.changeCanvas}
+                        onPolyoChange={this.changePolyo}
+                        onPolyoChangeByName={this.changePolyoByName}
+                        onToggleEraser={this.toggleEraser}
+                        onToggleColorSelector={this.toggleColorSelector}
+                        onUndoPolyo={this.changePolyoHistory}
+                        onUserPolyoChange={this.changeUserPolyo}
+                        onRedoPolyo={this.changePolyoHistory}
+                        matIconSize={this.state.matIconSize}
+                    />
+                    <Board 
+                        currentPrimaryColor={this.state.primaryColor}
+                        currentPolyo={this.state.currentPolyo}
+                        canvas={this.state.canvas}
+                        isEraserOn={this.state.isEraserOn}
+                        isColorSelectorOn={this.state.isColorSelectorOn}
+                        onPrimaryColorChange={this.changePrimaryColor}
+                        onCanvasChange={this.changeCanvas}
+                        onToggleColorSelector={this.toggleColorSelector}
+                        matIconSize={this.state.matIconSize}
+                        onBoardSizeChange={this.changeBoardSize}
+                        onUndoCanvas={this.changeSquaresHistory}
+                        onRedoCanvas={this.changeSquaresHistory}
+                        boardX={this.state.xSquares}
+                        boardY={this.state.ySquares}
+                    />
+                    <ImagePreview 
+                        canvas={this.state.canvas}
+                        boardX={this.state.xSquares}
+                        boardY={this.state.ySquares} />
+                </WorkspaceDiv>
+            </div>
         )
     }
 }
