@@ -39,9 +39,8 @@ export default class Square extends Component {
                 cursor={this.getCursor()}
                 className={this.props.isBeingChecked ? "is-being-checked" : ""}
                 onMouseEnter={() => this.props.onSetCurrentCenter(this.props.row, this.props.col)}
-                onClick={() => this.props.assignColorToSquares(this.props.currentColor)}
                 onMouseUp={() => this.props.mouseIsUp()}
-                onMouseDown={() => this.props.mouseIsDown()}
+                onMouseDown={() => this.props.mouseIsDown(this.props.row, this.props.col)}
                 >
             </BoardSquare>
         )

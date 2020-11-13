@@ -111,7 +111,6 @@ export default class Board extends Component {
 
     // todo - turn this into a "handler" method for code cleanliness sake...
     assignColorToSquares(newColor, polyo, assignedColor) {
-        console.log('assigned color...', assignedColor);
         if (this.props.isColorSelectorOn) {
             this.getColorFromSquare(assignedColor);
             return;
@@ -153,14 +152,11 @@ export default class Board extends Component {
         return (this.state.currentComputedPolyo.some(item => (JSON.stringify(item) === stringifiedCoords)));
     }
 
-    mouseIsDown() {
-        if (this.props.isColorSelectorOn) {
-            return false;
-        }
+    mouseIsDown(row, col) {
         this.setState(state => ({
             isMouseDown: true
         }));
-        this.assignColorToSquares(this.props.currentPrimaryColor, this.state.currentComputedPolyo);
+        this.assignColorToSquares(this.props.currentPrimaryColor, this.state.currentComputedPolyo, this.getSquareAssignment(row, col));
     }
 
     mouseIsUp() {
@@ -182,7 +178,6 @@ export default class Board extends Component {
                 isColorSelectorOn={this.props.isColorSelectorOn}
                 isEraserOn={this.props.isEraserOn}
                 onSetCurrentCenter={() => this.setCurrentCenter(row, col)}
-                assignColorToSquares={() => this.assignColorToSquares(this.props.currentPrimaryColor, this.state.currentComputedPolyo, this.getSquareAssignment(row, col))}
                 mouseIsUp={this.mouseIsUp}
                 mouseIsDown={this.mouseIsDown}
             />
