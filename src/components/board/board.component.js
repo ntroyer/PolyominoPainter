@@ -118,6 +118,12 @@ export default class Board extends Component {
             this.eraseSquares(polyo);
             return;
         }
+        if (this.props.isFillOn) {
+            const newCanvas = this.fillSquares(polyo[0], assignedColor, newColor, Object.assign({}, this.props.canvas));
+            console.log(newCanvas);
+            this.props.onCanvasChange(newCanvas);
+            return;
+        }
 
         let canvas = Object.assign({}, this.props.canvas);
 
@@ -126,7 +132,30 @@ export default class Board extends Component {
             return true;
         });
 
+        console.log('traditional canvas...', canvas);
+
         this.props.onCanvasChange(canvas);
+    }
+
+    fillSquares(square, oldColor, newColor, canvas) {
+        const key = square[0] + "," + square[1];
+
+        if (typeof canvas[key] === 'undefined') {
+            return canvas;
+        }
+
+        if (canvas[key] !== oldColor) {
+            return canvas;
+        }
+
+        canvas[key] = newColor;
+
+        this.fillSquares([square[0] + 1, square[1]], oldColor, newColor, canvas);
+        this.fillSquares([square[0] - 1, square[1]], oldColor, newColor, canvas);
+        this.fillSquares([square[0], square[1] + 1], oldColor, newColor, canvas);
+        this.fillSquares([square[0], square[1] - 1], oldColor, newColor, canvas);
+
+        return canvas;
     }
 
     computePolyoCoords(row, col) {

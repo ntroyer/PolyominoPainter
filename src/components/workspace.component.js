@@ -35,11 +35,13 @@ export default class Workspace extends Component {
         const userPolyo = localStorage.getItem('userpolyo') ? Number(localStorage.getItem('userpolyo')) : -1;
         const userPolyoIdHistory = [userPolyo];
 
-        const canvas = localStorage.getItem('canvas') ? JSON.parse(localStorage.getItem('canvas')) : {};
+        // const canvas = localStorage.getItem('canvas') ? JSON.parse(localStorage.getItem('canvas')) : {};
+        const canvas = {};
         const canvasHistory = [canvas];
         const canvasStep = 0;
 
         const polyo = localStorage.getItem('polyo') ? JSON.parse(localStorage.getItem('polyo')) : defaultPolyo.data;
+        // const polyo = {};
         const polyoHistory = [polyo];
         const polyoStep = 0;
         const selectablePolyos = localStorage.getItem('selectablepolyos') ? JSON.parse(localStorage.getItem('selectablepolyos')) : this.shufflePolyominos().slice(0, 3);
