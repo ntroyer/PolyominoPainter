@@ -10,6 +10,7 @@ import RandomPolyomino from './random-polyomino/random-polyomino.component';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { CgColorBucket } from 'react-icons/cg';
 
 const RotateLeft = styled(MdRotateLeft)`
     cursor: pointer;
@@ -22,12 +23,17 @@ const RotateRight = styled(MdRotateRight)`
 const ColorSelect = styled(MdColorize)`
     cursor: pointer;
     color: ${props => (props.color)};
-`
+`;
 
 const Eraser = styled(FaEraser)`
     cursor: pointer;
     color: ${props => (props.color)};
-`
+`;
+
+const Fill = styled(CgColorBucket)`
+    cursor: pointer;
+    color: ${props => (props.color)};
+`;
 
 const FlipX = styled(MdFlip)`
     transform: rotate(90deg);
@@ -136,6 +142,13 @@ export default class BrushControls extends Component {
         return "black";
     }
 
+    getFillColor() {
+        if (this.props.isFillOn) {
+            return "gray";
+        }
+        return "black";
+    }
+
     render() {
         return (
             <Controls>
@@ -178,6 +191,7 @@ export default class BrushControls extends Component {
                 <PolyominoMovementControls>
                     <ColorSelect data-tip="Toggle Color Selector" onClick={this.props.onToggleColorSelector} size={this.props.matIconSize} color={this.getColorSelectColor()} />
                     <Eraser data-tip="Toggle Eraser" onClick={this.props.onToggleEraser} size={this.props.matIconSize} color={this.getEraserColor()} />
+                    <Fill data-tip="Toggle Fill" onClick={this.props.onToggleFill} size={this.props.matIconSize} color={this.getFillColor()} />
                 </PolyominoMovementControls>
                 <ReactTooltip />
             </Controls>

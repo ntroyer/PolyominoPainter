@@ -54,6 +54,7 @@ export default class Workspace extends Component {
             ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y),
             isEraserOn: false,
             isColorSelectorOn: false,
+            isFillOn: false,
             canvasHistory: canvasHistory,
             currentPolyoHistory: polyoHistory,
             canvasStep: canvasStep,
@@ -73,6 +74,7 @@ export default class Workspace extends Component {
         this.changeUserPolyo = this.changeUserPolyo.bind(this);
         this.toggleEraser = this.toggleEraser.bind(this);
         this.toggleColorSelector = this.toggleColorSelector.bind(this);
+        this.toggleFill = this.toggleFill.bind(this);
         this.newImage = this.newImage.bind(this);
         this.resetCanvas = this.resetCanvas.bind(this);
     }
@@ -184,24 +186,43 @@ export default class Workspace extends Component {
     }
 
     toggleEraser() {
-        const newval = !this.state.isEraserOn
+        const newval = !this.state.isEraserOn;
         this.setState(state => ({
             isEraserOn: newval
         }));
 
-        if (this.state.isColorSelectorOn) {
-            this.toggleColorSelector();
-        }
+        this.turnOffOtherTools("eraser");
     }
 
     toggleColorSelector() {
-        const newval = !this.state.isColorSelectorOn
+        const newval = !this.state.isColorSelectorOn;
         this.setState(state => ({
             isColorSelectorOn: newval
         }));
 
-        if (this.state.isEraserOn) {
+        this.turnOffOtherTools("color");
+    }
+
+    toggleFill() {
+        const newval = !this.state.isFillOn;
+        this.setState(state => ({
+            isFillOn: newval
+        }));
+
+        this.turnOffOtherTools("fill");
+    }
+
+    turnOffOtherTools(skip) {
+        if (this.state.isEraserOn && skip !== 'eraser') {
             this.toggleEraser();
+        }
+
+        if (this.state.isFillOn && skip !== 'fill') {
+            this.toggleFill();
+        }
+
+        if (this.state.isColorSelectorOn && skip !== 'color') {
+            this.toggleColorSelector();
         }
     }
 
@@ -261,6 +282,7 @@ export default class Workspace extends Component {
                         canvas={this.state.canvas}
                         isEraserOn={this.state.isEraserOn}
                         isColorSelectorOn={this.state.isColorSelectorOn}
+                        isFillOn={this.state.isFillOn}
                         polyoList={this.state.polyoList}
                         selectablePolyos={this.state.selectablePolyos}
                         onPrimaryColorChange={this.changePrimaryColor}
@@ -270,6 +292,7 @@ export default class Workspace extends Component {
                         onPolyoChangeByName={this.changePolyoByName}
                         onToggleEraser={this.toggleEraser}
                         onToggleColorSelector={this.toggleColorSelector}
+                        onToggleFill={this.toggleFill}
                         onUndoPolyo={this.changePolyoHistory}
                         onUserPolyoChange={this.changeUserPolyo}
                         onRedoPolyo={this.changePolyoHistory}
@@ -281,6 +304,7 @@ export default class Workspace extends Component {
                         canvas={this.state.canvas}
                         isEraserOn={this.state.isEraserOn}
                         isColorSelectorOn={this.state.isColorSelectorOn}
+                        isFillOn={this.state.isFillOn}
                         onPrimaryColorChange={this.changePrimaryColor}
                         onCanvasChange={this.changeCanvas}
                         onToggleColorSelector={this.toggleColorSelector}

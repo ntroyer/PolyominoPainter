@@ -109,7 +109,6 @@ export default class Board extends Component {
         this.props.onToggleColorSelector();
     }
 
-    // todo - turn this into a "handler" method for code cleanliness sake...
     assignColorToSquares(newColor, polyo, assignedColor) {
         if (this.props.isColorSelectorOn) {
             this.getColorFromSquare(assignedColor);
@@ -131,6 +130,10 @@ export default class Board extends Component {
     }
 
     computePolyoCoords(row, col) {
+        if (this.props.isColorSelectorOn || this.props.isFillOn) {
+            return [[row, col]];
+        }
+
         return this.props.currentPolyo.map((value) => {
             return [(row + value[0]), (col + value[1])]
         });
@@ -145,9 +148,6 @@ export default class Board extends Component {
     }
 
     isSquareBeingChecked(row, col) {
-        if (this.props.isColorSelectorOn) {
-            return false;
-        }
         const stringifiedCoords = JSON.stringify([row, col]);
         return (this.state.currentComputedPolyo.some(item => (JSON.stringify(item) === stringifiedCoords)));
     }
