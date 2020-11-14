@@ -35,8 +35,8 @@ export default class Workspace extends Component {
         const userPolyo = localStorage.getItem('userpolyo') ? Number(localStorage.getItem('userpolyo')) : -1;
         const userPolyoIdHistory = [userPolyo];
 
-        // const canvas = localStorage.getItem('canvas') ? JSON.parse(localStorage.getItem('canvas')) : {};
-        const canvas = {};
+        const canvas = localStorage.getItem('canvas') ? JSON.parse(localStorage.getItem('canvas')) : {};
+        // const canvas = {};
         const canvasHistory = [canvas];
         const canvasStep = 0;
 

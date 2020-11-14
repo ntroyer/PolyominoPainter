@@ -8,6 +8,7 @@ const BoardSquare = styled.td`
     text-align: center;
     border: 2px solid black;
     cursor: pointer;
+    user-select: none;
 
     &.is-being-checked {
         outline-color: ${props => (props.currentColor)};

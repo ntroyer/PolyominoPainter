@@ -120,7 +120,6 @@ export default class Board extends Component {
         }
         if (this.props.isFillOn) {
             const newCanvas = this.fillSquares(polyo[0], assignedColor, newColor, Object.assign({}, this.props.canvas));
-            console.log(newCanvas);
             this.props.onCanvasChange(newCanvas);
             return;
         }
@@ -132,28 +131,28 @@ export default class Board extends Component {
             return true;
         });
 
-        console.log('traditional canvas...', canvas);
-
         this.props.onCanvasChange(canvas);
     }
 
     fillSquares(square, oldColor, newColor, canvas) {
         const key = square[0] + "," + square[1];
 
-        if (typeof canvas[key] === 'undefined') {
-            return canvas;
+        if (typeof canvas[key] === 'undefined') {     
+            if (oldColor !== 0) {
+                return canvas;
+            }
+            canvas[key] = 0;
         }
 
         if (canvas[key] !== oldColor) {
             return canvas;
         }
-
         canvas[key] = newColor;
 
-        this.fillSquares([square[0] + 1, square[1]], oldColor, newColor, canvas);
-        this.fillSquares([square[0] - 1, square[1]], oldColor, newColor, canvas);
-        this.fillSquares([square[0], square[1] + 1], oldColor, newColor, canvas);
-        this.fillSquares([square[0], square[1] - 1], oldColor, newColor, canvas);
+        this.fillSquares([Math.min(this.props.boardX - 1, square[0] + 1), square[1]], oldColor, newColor, canvas);
+        this.fillSquares([Math.max(0, square[0] - 1), square[1]], oldColor, newColor, canvas);
+        this.fillSquares([square[0], Math.min(this.props.boardY - 1, square[1] + 1)], oldColor, newColor, canvas);
+        this.fillSquares([square[0], Math.max(0, square[1] - 1)], oldColor, newColor, canvas);
 
         return canvas;
     }
