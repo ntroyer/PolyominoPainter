@@ -44,7 +44,8 @@ export default class Workspace extends Component {
         // const polyo = {};
         const polyoHistory = [polyo];
         const polyoStep = 0;
-        const selectablePolyos = localStorage.getItem('selectablepolyos') ? JSON.parse(localStorage.getItem('selectablepolyos')) : this.shufflePolyominos().slice(0, 3);
+        const shuffledPolyos = this.shufflePolyominos();
+        const selectablePolyos = localStorage.getItem('selectablepolyos') ? JSON.parse(localStorage.getItem('selectablepolyos')) : shuffledPolyos.slice(0, 3);
 
         this.state = {
             currentPolyo: polyo,
@@ -62,7 +63,7 @@ export default class Workspace extends Component {
             canvasStep: canvasStep,
             currentPolyoStep: polyoStep,
             matIconSize: 50,
-            polyoList: polyominos,
+            polyoList: shuffledPolyos.slice(0, 10),
             selectablePolyos: selectablePolyos
         }
 

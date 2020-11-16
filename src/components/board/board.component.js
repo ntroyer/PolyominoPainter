@@ -135,6 +135,8 @@ export default class Board extends Component {
     }
 
     fillSquares(square, oldColor, newColor, canvas) {
+        // this is an implementation of "flood fill" as shown here:
+        // https://www.geeksforgeeks.org/flood-fill-algorithm-implement-fill-paint/
         const key = square[0] + "," + square[1];
 
         if (typeof canvas[key] === 'undefined') {     

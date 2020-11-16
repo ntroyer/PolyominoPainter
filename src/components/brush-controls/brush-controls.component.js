@@ -172,7 +172,7 @@ export default class BrushControls extends Component {
                 <PolyominoCanvasControls>
                     <RandomPolyomino onPolyoChange={this.props.onPolyoChange} polyominos={this.props.polyoList} />
                     <Button variant="secondary" onClick={this.clearPolyomino}>Clear Brush</Button>
-                    <DropdownButton variant="secondary" id="select-brush" title="Select Brush" onSelect={(name) => this.setPolyoByName(name)}>
+                    <DropdownButton variant="secondary" drop={'right'} id="select-brush" title="Select Brush" onSelect={(name) => this.setPolyoByName(name)}>
                         {this.props.polyoList.map(
                             (brush) => (
                                 <Dropdown.Item key={"brush_" + brush.name} eventKey={brush.name}>{brush.name}</Dropdown.Item>
