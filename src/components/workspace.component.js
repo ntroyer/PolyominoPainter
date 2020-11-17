@@ -47,6 +47,8 @@ export default class Workspace extends Component {
         const shuffledPolyos = this.shufflePolyominos();
         const selectablePolyos = localStorage.getItem('selectablepolyos') ? JSON.parse(localStorage.getItem('selectablepolyos')) : shuffledPolyos.slice(0, 3);
 
+        const myimages = [[], [], [], [], [], []];
+
         this.state = {
             currentPolyo: polyo,
             currentUserPolyoId: userPolyo,
@@ -64,7 +66,9 @@ export default class Workspace extends Component {
             currentPolyoStep: polyoStep,
             matIconSize: 50,
             polyoList: shuffledPolyos.slice(0, 10),
-            selectablePolyos: selectablePolyos
+            selectablePolyos: selectablePolyos,
+            myimages: myimages,
+            myimageop: "load"
         }
 
         this.changePrimaryColor = this.changePrimaryColor.bind(this);
@@ -75,6 +79,8 @@ export default class Workspace extends Component {
         this.changePolyoHistory = this.changePolyoHistory.bind(this);
         this.changeSquaresHistory = this.changeSquaresHistory.bind(this);
         this.changeUserPolyo = this.changeUserPolyo.bind(this);
+        this.changeMyImages = this.changeMyImages.bind(this);
+        this.changeMyImageOp = this.changeMyImageOp.bind(this);
         this.toggleEraser = this.toggleEraser.bind(this);
         this.toggleColorSelector = this.toggleColorSelector.bind(this);
         this.toggleFill = this.toggleFill.bind(this);
@@ -266,6 +272,18 @@ export default class Workspace extends Component {
         console.log('save image coming soon...');
     }
 
+    changeMyImages(images) {
+        this.setState(state => ({
+            myimages: images
+        }));
+    }
+
+    changeMyImageOp(op) {
+        this.setState(state => ({
+            myimageop: op
+        }));
+    }
+
     render() {
         return (
             <div>
@@ -273,8 +291,6 @@ export default class Workspace extends Component {
                     Polyomino Painter
                     <div>
                         <Button variant="secondary" onClick={this.newImage}>New Image</Button>
-                        <Button variant="secondary" onClick={this.loadImage}>Load Image</Button>
-                        <Button variant="secondary" onClick={this.saveImage}>Save Image</Button>
                     </div>
                 </Crudbar>
                 <WorkspaceDiv>
@@ -321,7 +337,12 @@ export default class Workspace extends Component {
                     <ImagePreview 
                         canvas={this.state.canvas}
                         boardX={this.state.xSquares}
-                        boardY={this.state.ySquares} />
+                        boardY={this.state.ySquares}
+                        images={this.state.myimages}
+                        myimageop={this.state.myimageop}
+                        onMyImagesChange={this.changeMyImages} 
+                        onMyImageOpChange={this.changeMyImageOp}
+                    />
                 </WorkspaceDiv>
             </div>
         )
