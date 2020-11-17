@@ -343,7 +343,6 @@ export default class Workspace extends Component {
                         myimages={this.state.myimages}
                         myimageop={this.state.myimageop}
                         onCanvasChange={this.changeCanvas}
-                        onMyImagesChange={this.changeMyImages} 
                         onMyImageOpChange={this.changeMyImageOp}
                     />
                 </WorkspaceDiv>
