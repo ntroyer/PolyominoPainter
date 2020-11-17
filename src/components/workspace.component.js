@@ -47,7 +47,9 @@ export default class Workspace extends Component {
         const shuffledPolyos = this.shufflePolyominos();
         const selectablePolyos = localStorage.getItem('selectablepolyos') ? JSON.parse(localStorage.getItem('selectablepolyos')) : shuffledPolyos.slice(0, 3);
 
-        const myimages = [[], [], [], [], [], []];
+        const myimages = localStorage.getItem('myimages') ? JSON.parse(localStorage.getItem('myimages')) : [{}, {}, {}, {}, {}, {}];
+
+        // const myimages = [{}, {}, {}, {}, {}, {}];
 
         this.state = {
             currentPolyo: polyo,
@@ -338,8 +340,9 @@ export default class Workspace extends Component {
                         canvas={this.state.canvas}
                         boardX={this.state.xSquares}
                         boardY={this.state.ySquares}
-                        images={this.state.myimages}
+                        myimages={this.state.myimages}
                         myimageop={this.state.myimageop}
+                        onCanvasChange={this.changeCanvas}
                         onMyImagesChange={this.changeMyImages} 
                         onMyImageOpChange={this.changeMyImageOp}
                     />

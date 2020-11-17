@@ -15,9 +15,14 @@ export default class ImagePreview extends Component {
         return (
             <MyImage
                 key={"myimage-" + key}
+                num={key}
                 image={image} 
                 boardX={this.props.boardX}
-                boardY={this.props.boardY} ></MyImage>
+                boardY={this.props.boardY} 
+                myimages={this.props.myimages}
+                myimageop={this.props.myimageop}
+                maincanvas={this.props.canvas} 
+                onCanvasChange={this.props.onCanvasChange} ></MyImage>
         )
     }
 
@@ -67,7 +72,7 @@ export default class ImagePreview extends Component {
                     </ButtonGroup>
                 </div>
                 {
-                    this.props.images.map((image, key) => this.renderMyImage(image, key))
+                    this.props.myimages.map((image, key) => this.renderMyImage(image, key))
                 }
             </ImagePreviewCanvas>
         )
