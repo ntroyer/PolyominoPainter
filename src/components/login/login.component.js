@@ -5,7 +5,9 @@ import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 const WrapperDiv = styled.div`
-    display: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const LoginInput = styled(InputGroup)`
@@ -14,6 +16,7 @@ const LoginInput = styled(InputGroup)`
 
 const WelcomeInput = styled.p`
     margin: 1rem;
+    white-space: nowrap;
 `;
 
 export default class Login extends Component {
@@ -29,6 +32,7 @@ export default class Login extends Component {
         if (this.props.username === '') {
             return(
                 <WrapperDiv>
+                    <WelcomeInput>Login to save your images!</WelcomeInput>
                     <LoginInput size="sm" className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="addon-user">Username</InputGroup.Text>
