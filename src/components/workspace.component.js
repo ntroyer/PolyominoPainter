@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+import { polyominos } from '../data/polyominos';
 
 import Board from "./board/board.component";
 import BrushControls from "./brush-controls/brush-controls.component";
 import ImagePreview from "./image-preview/image-preview.component";
-import Button from 'react-bootstrap/Button';
-import { polyominos } from '../data/polyominos';
+import Login from "./login/login.component";
 
 const Crudbar = styled.div`
     height: 56px;
@@ -53,6 +54,7 @@ export default class Workspace extends Component {
 
         this.state = {
             currentPolyo: polyo,
+            currentUser: "",
             currentUserPolyoId: userPolyo,
             userPolyoIdHistory: userPolyoIdHistory,
             primaryColor: color,
@@ -176,8 +178,6 @@ export default class Workspace extends Component {
     changeSquaresHistory(isUndo) {
         const newStep = isUndo ? this.state.canvasStep - 1 : this.state.canvasStep + 1;
 
-        // localStorage.setItem('canvasstep', newStep);
-
         if (typeof this.state.canvasHistory[newStep] !== 'undefined') {
             localStorage.setItem('canvas', JSON.stringify(this.state.canvasHistory[newStep]));
             this.setState(state => ({
@@ -274,6 +274,14 @@ export default class Workspace extends Component {
         console.log('save image coming soon...');
     }
 
+    login() {
+        console.log('logging in...');
+    }
+
+    logout() {
+        console.log('logging out...');
+    }
+
     changeMyImages(images) {
         this.setState(state => ({
             myimages: images
@@ -291,9 +299,11 @@ export default class Workspace extends Component {
             <div>
                 <Crudbar>
                     Polyomino Painter
-                    <div>
-                        <Button variant="secondary" onClick={this.newImage}>New Image</Button>
-                    </div>
+                    <Login 
+                        username={this.state.currentUser}
+                        onLogin={this.login}
+                        onLogout={this.logout}
+                    />
                 </Crudbar>
                 <WorkspaceDiv>
                     <BrushControls 
@@ -307,7 +317,6 @@ export default class Workspace extends Component {
                         polyoList={this.state.polyoList}
                         selectablePolyos={this.state.selectablePolyos}
                         onPrimaryColorChange={this.changePrimaryColor}
-                        onPlayerChange={this.changePlayer}
                         onCanvasChange={this.changeCanvas}
                         onPolyoChange={this.changePolyo}
                         onPolyoChangeByName={this.changePolyoByName}
