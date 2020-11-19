@@ -49,17 +49,27 @@ export default class Workspace extends Component {
 
         const myimages = localStorage.getItem('myimages') ? JSON.parse(localStorage.getItem('myimages')) : [{}, {}, {}, {}, {}, {}];
 
+        const canvasSquareWidth = 80;
+        const canvasSquareHeight = 80;
+
+        const previewSquareWidth = canvasSquareWidth * .75;
+        const previewSquareHeight = canvasSquareHeight * .75;
+
         // const myimages = [{}, {}, {}, {}, {}, {}];
 
         this.state = {
+            canvasSquareWidth: canvasSquareWidth,
+            canvasSquareHeight: canvasSquareHeight,
+            previewSquareWidth: previewSquareWidth,
+            previewSquareHeight: previewSquareHeight,
             currentPolyo: polyo,
             currentUser: "",
             currentUserPolyoId: userPolyo,
             userPolyoIdHistory: userPolyoIdHistory,
             primaryColor: color,
             canvas: canvas,
-            xSquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_X),
-            ySquares: Number(process.env.REACT_APP_BOARD_NUM_SQUARES_Y),
+            xSquares: 10,
+            ySquares: 10,
             isEraserOn: false,
             isColorSelectorOn: false,
             isFillOn: false,
@@ -326,6 +336,8 @@ export default class Workspace extends Component {
                         onUserPolyoChange={this.changeUserPolyo}
                         onRedoPolyo={this.changePolyoHistory}
                         matIconSize={this.state.matIconSize}
+                        previewSquareWidth={this.state.previewSquareWidth}
+                        previewSquareHeight={this.state.previewSquareHeight}
                     />
                     <Board 
                         currentPrimaryColor={this.state.primaryColor}
@@ -341,6 +353,8 @@ export default class Workspace extends Component {
                         onBoardSizeChange={this.changeBoardSize}
                         onUndoCanvas={this.changeSquaresHistory}
                         onRedoCanvas={this.changeSquaresHistory}
+                        squareWidth={this.state.canvasSquareWidth}
+                        squareHeight={this.state.canvasSquareHeight}
                         boardX={this.state.xSquares}
                         boardY={this.state.ySquares}
                     />

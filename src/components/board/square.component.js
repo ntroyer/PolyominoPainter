@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const BoardSquare = styled.td`
     background: ${props => (props.assignedColor)};
-    width: ${props => (props.squareWidth)}px;
-    height: ${props => (props.squareHeight)}px;
+    width: ${props => (props.width)}px;
+    height: ${props => (props.height)}px;
     text-align: center;
     border: 2px solid black;
     cursor: pointer;
@@ -33,8 +33,8 @@ export default class Square extends Component {
     render() {
         return(
             <BoardSquare
-                squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
-                squareHeight={process.env.REACT_APP_BOARD_SQUARE_HEIGHT}
+                width={this.props.width}
+                height={this.props.height}
                 currentColor={this.props.currentColor}
                 assignedColor={this.props.assignedColor}
                 cursor={this.getCursor()}

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const PreviewSquare = styled.td`
-    width: ${props => (props.squareWidth)}px;
-    height: ${props => (props.squareHeight)}px;
+    width: ${props => (props.width)}px;
+    height: ${props => (props.height)}px;
     background: ${props => (props.isAssigned ? props.currentColor : "")};
     text-align: center;
     border: 2px solid black;
@@ -21,8 +21,8 @@ export default class PolyominoPreviewSquare extends Component {
     render() {
         return (
             <PreviewSquare 
-                squareWidth={process.env.REACT_APP_PREVIEW_SQUARE_WIDTH}
-                squareHeight={process.env.REACT_APP_PREVIEW_SQUARE_HEIGHT}
+                width={this.props.width}
+                height={this.props.height}
                 className={this.props.isCenter ? "is-center" : ""}
                 currentColor={this.props.currentPrimaryColor}
                 isAssigned={this.props.isAssigned} 

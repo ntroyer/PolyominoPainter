@@ -202,6 +202,8 @@ export default class Board extends Component {
                 key={key}
                 row={row}
                 col={col}
+                width={this.props.squareWidth}
+                height={this.props.squareHeight}
                 currentColor={this.props.currentPrimaryColor}
                 assignedColor={this.getSquareAssignment(row, col)}
                 isBeingChecked={this.isSquareBeingChecked(row, col)}
@@ -232,7 +234,7 @@ export default class Board extends Component {
     }
 
     getGridWidth() {
-        return process.env.REACT_APP_BOARD_SQUARE_WIDTH * this.props.boardX;
+        return this.props.squareWidth * this.props.boardX;
     }
 
     render() {

@@ -56,6 +56,8 @@ export default class PolyominoPreview extends Component {
                 key={key}
                 row={row}
                 col={col}
+                width={this.props.squareWidth}
+                height={this.props.squareHeight}
                 currentPrimaryColor={this.props.currentPrimaryColor}
                 isAssigned={this.isSquareInCurrentPolyo(row, col)}
                 isCenter={this.isSquareCenter(row, col)}
