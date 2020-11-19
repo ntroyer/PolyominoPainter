@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Button from 'react-bootstrap/Button';
 import { polyominos } from '../data/polyominos';
 
 import Board from "./board/board.component";

@@ -4,12 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Workspace from "./components/workspace.component";
 
-function App() {
+export default function App() {
   return (
     <Router>
       <Route path="/" component={Workspace} />
     </Router>
   );
 }
-
-export default App;

@@ -33,25 +33,6 @@ export default class Login extends Component {
             return(
                 <WrapperDiv>
                     <WelcomeInput>Login to save your images!</WelcomeInput>
-                    <LoginInput size="sm" className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="addon-user">Username</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl 
-                            aria-label="Username"
-                            aria-describedby="addon-user"
-                        />
-                    </LoginInput>
-                    <LoginInput size="sm" className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="addon-pass">Password</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl 
-                            aria-label="Password"
-                            aria-describedby="addon-pass"
-                            type="password"
-                        />
-                    </LoginInput>
                     <Button variant="primary" onClick={this.login()}>Login</Button>
                 </WrapperDiv>
             )
