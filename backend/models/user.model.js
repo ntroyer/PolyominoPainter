@@ -7,7 +7,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
-        minelength: 3
+        minlength: 3
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    image_ids: {
+        type: [mongoose.Schema.Types.ObjectId]
     }
 }, {
     timestamps: true,

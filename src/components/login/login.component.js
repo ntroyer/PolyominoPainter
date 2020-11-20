@@ -20,6 +20,10 @@ const WelcomeInput = styled.p`
 `;
 
 export default class Login extends Component {
+    newaccount() {
+        this.props.onNewAccount();
+    }
+
     login() {
         this.props.onLogin();
     }
@@ -34,6 +38,7 @@ export default class Login extends Component {
                 <WrapperDiv>
                     <WelcomeInput>Login to save your images!</WelcomeInput>
                     <Button variant="primary" onClick={this.login()}>Login</Button>
+                    <Button variant="primary" onClick={this.newaccount()}>Create Account</Button>
                 </WrapperDiv>
             )
         } else {

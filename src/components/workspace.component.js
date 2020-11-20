@@ -291,6 +291,10 @@ export default class Workspace extends Component {
         console.log('logging out...');
     }
 
+    createAccount() {
+        console.log('coming soon...');
+    }
+
     changeMyImages(images) {
         this.setState(state => ({
             myimages: images
@@ -312,6 +316,7 @@ export default class Workspace extends Component {
                         username={this.state.currentUser}
                         onLogin={this.login}
                         onLogout={this.logout}
+                        onNewAccount={this.createAccount}
                     />
                 </Crudbar>
                 <WorkspaceDiv>

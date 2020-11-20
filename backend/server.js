@@ -21,10 +21,10 @@ mongoose.connect(
         useUnifiedTopology: true,
         useFindAndModify: true 
     }
-).then(result => {
-    console.log('Connected to mongodb');
+).then((result) => {
+    console.log('Connected to mongodb: ', result);
 }).catch((error) => {
-    console.log('Could not connect to mongodb');
+    console.log('Could not connect to mongodb: ', error);
 });
 
 const connection = mongoose.connection;
