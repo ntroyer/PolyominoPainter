@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { polyominos } from '../data/polyominos';
+import axios from 'axios';
 
 import Board from "./board/board.component";
 import BrushControls from "./brush-controls/brush-controls.component";
@@ -54,8 +55,6 @@ export default class Workspace extends Component {
 
         const previewSquareWidth = canvasSquareWidth * .75;
         const previewSquareHeight = canvasSquareHeight * .75;
-
-        // const myimages = [{}, {}, {}, {}, {}, {}];
 
         this.state = {
             canvasSquareWidth: canvasSquareWidth,
@@ -279,8 +278,13 @@ export default class Workspace extends Component {
         console.log('load image coming soon...');
     }
 
-    saveImage() {
+    saveImage(number, image) {
         console.log('save image coming soon...');
+
+        // todo - doesn't work, need to figure out why
+        axios.post('http://localhost:5000/images/add', 'hello')
+            .then(res => console.log(res.data))
+            .catch(err => console.log('error saving image...'));
     }
 
     login() {
@@ -371,6 +375,7 @@ export default class Workspace extends Component {
                         myimageop={this.state.myimageop}
                         onCanvasChange={this.changeCanvas}
                         onMyImageOpChange={this.changeMyImageOp}
+                        onImageSave={this.saveImage}
                     />
                 </WorkspaceDiv>
             </div>

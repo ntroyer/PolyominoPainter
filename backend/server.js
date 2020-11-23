@@ -33,8 +33,10 @@ connection.once('open', () => {
 });
 
 const usersRouter = require('./routes/users');
+const imagesRouter = require('./routes/images');
 
 app.use('/users', usersRouter);
+app.use('/images', imagesRouter);
 
 app.listen(port, () => {
     console.log(`server is running on port: ${port}`)

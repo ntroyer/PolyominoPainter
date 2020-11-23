@@ -31,6 +31,8 @@ export default class MyImage extends Component {
                 canvas: this.props.maincanvas
             }));
             localStorage.setItem('myimages', JSON.stringify(newimages));
+            console.log('saving image...');
+            this.props.onImageSave(this.props.num, this.props.maincanvas);
         }
         
     }

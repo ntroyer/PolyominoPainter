@@ -22,7 +22,8 @@ export default class ImagePreview extends Component {
                 myimages={this.props.myimages}
                 myimageop={this.props.myimageop}
                 maincanvas={this.props.canvas} 
-                onCanvasChange={this.props.onCanvasChange} ></MyImage>
+                onCanvasChange={this.props.onCanvasChange}
+                onImageSave={this.props.onImageSave} ></MyImage>
         )
     }
 

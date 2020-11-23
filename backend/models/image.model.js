@@ -5,7 +5,7 @@ const imageSchema = new mongoose.Schema({
     canvas: {
         type: Object
     },
-    save_id: {
+    position_id: {
         type: Number
     } 
 }, {
