@@ -278,11 +278,14 @@ export default class Workspace extends Component {
         console.log('load image coming soon...');
     }
 
-    saveImage(number, image) {
-        console.log('save image coming soon...');
-
+    saveImage(number, canvas) {
         // todo - doesn't work, need to figure out why
-        axios.post('http://localhost:5000/images/add', 'hello')
+        let image = {
+            canvas: canvas,
+            position_id: number
+        }
+        
+        axios.post('http://localhost:5000/images/add', image)
             .then(res => console.log(res.data))
             .catch(err => console.log('error saving image...'));
     }

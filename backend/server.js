@@ -22,7 +22,7 @@ mongoose.connect(
         useFindAndModify: true 
     }
 ).then((result) => {
-    console.log('Connected to mongodb: ', result);
+    console.log('Connected to mongodb');
 }).catch((error) => {
     console.log('Could not connect to mongodb: ', error);
 });
