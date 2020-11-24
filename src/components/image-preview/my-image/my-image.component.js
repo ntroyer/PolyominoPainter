@@ -30,15 +30,14 @@ export default class MyImage extends Component {
             this.setState(state => ({
                 canvas: this.props.maincanvas
             }));
+
             localStorage.setItem('myimages', JSON.stringify(newimages));
-            console.log('saving image...');
             this.props.onImageSave(this.props.num, this.props.maincanvas);
         }
         
     }
 
     render() {
-        // should render a load button, a save button and a canvas
         return(
             <CanvasContainer onClick={this.handleClick}>
                 <Canvas 

@@ -14,11 +14,12 @@ router.route('/add').post((req, res) => {
     const newUser = new User({username, password});
 
     newUser.save()
-        .then(() => res.json('User added!'))
+        .then(() => res.status(200).json('User added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/updateimages').post((req, res) => {
+// we don't need this route anymore
+/*router.route('/updateimages').post((req, res) => {
     // todo - need to write update code for the user.
     // this code should only update their user images right now
     const userid = req.body.userid;
@@ -26,7 +27,7 @@ router.route('/updateimages').post((req, res) => {
     User.findByIdAndUpdate(userid, {image_ids: req.body.image_ids})
         .then(() => res.json('Images updated for user!'))
         .catch(err => res.status(400).json('Cannot update images for user.'));
-});
+});*/
 
 router.route('/login').post((req, res) => {
 

@@ -63,6 +63,7 @@ export default class Workspace extends Component {
             previewSquareHeight: previewSquareHeight,
             currentPolyo: polyo,
             currentUser: "",
+            currentUserId: "",
             currentUserPolyoId: userPolyo,
             userPolyoIdHistory: userPolyoIdHistory,
             primaryColor: color,
@@ -97,6 +98,7 @@ export default class Workspace extends Component {
         this.toggleColorSelector = this.toggleColorSelector.bind(this);
         this.toggleFill = this.toggleFill.bind(this);
         this.newImage = this.newImage.bind(this);
+        this.saveImage = this.saveImage.bind(this);
         this.resetCanvas = this.resetCanvas.bind(this);
     }
 
@@ -282,12 +284,13 @@ export default class Workspace extends Component {
         // todo - doesn't work, need to figure out why
         let image = {
             canvas: canvas,
-            position_id: number
+            position_id: number,
+            user_id: ""
         }
-        
+
         axios.post('http://localhost:5000/images/add', image)
             .then(res => console.log(res.data))
-            .catch(err => console.log('error saving image...'));
+            .catch(err => console.log('error saving image...', err));
     }
 
     login() {

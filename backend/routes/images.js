@@ -2,15 +2,19 @@ const router = require('express').Router();
 let Image = require('../models/image.model');
 
 router.route('/add').post((req, res) => {
-    // todo - this is a json string, right?
-    // const images = JSON.parse(req.body.images);
-    console.log('adding images...', req.body);
+    const canvas = req.body.canvas;
+    const positionid = req.body.position_id;
+    const userid = req.body.user_id;
 
-    /*images.forEach( function(image) {
-        // create an object for each and save it
-        console.log(image);
-        // let image = new Image({image.canvas, image.save_id});
-    });*/
+    const newImg = Image({
+        userid,
+        positionid,
+        canvas
+    });
+
+    newImg.save()
+        .then(() => res.status(200).json('Image saved!'))
+        .catch(err => res.status(400).json('Error: Image failed to save!', err));
 });
 
 module.exports = router;

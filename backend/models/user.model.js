@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
+// todo - are the image_ids even needed? maybe just need to run one command
+// that gets all the ids with the current user id instead of using a relational list...
+const userSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -12,9 +14,6 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    image_ids: {
-        type: [mongoose.Schema.Types.ObjectId]
     }
 }, {
     timestamps: true,

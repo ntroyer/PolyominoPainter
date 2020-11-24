@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const imageSchema = new mongoose.Schema({
-    canvas: {
-        type: Object
+const imageSchema = new Schema({
+    user_id: {
+        type: Schema.Types.ObjectId,
+        required: true
     },
     position_id: {
-        type: Number
-    } 
+        type: Number,
+        required: true
+    },
+    canvas: {
+        type: Object
+    }
 }, {
     timestamps: true
 });
