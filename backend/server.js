@@ -11,8 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
-
-console.log('connecting to ', uri);
+console.log('connecting to', uri);
 
 mongoose.connect(
     uri, { 
@@ -30,6 +29,9 @@ mongoose.connect(
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log('we are connected to mongodb!');
+    /*connection.db.listCollections().toArray(function (err, names) {
+        console.log(names);
+    });*/
 });
 
 const usersRouter = require('./routes/users');

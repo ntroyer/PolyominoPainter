@@ -285,7 +285,7 @@ export default class Workspace extends Component {
         let image = {
             canvas: canvas,
             position_id: number,
-            user_id: ""
+            user_id: this.state.currentUserId
         }
 
         axios.post('http://localhost:5000/images/add', image)

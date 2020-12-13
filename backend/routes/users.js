@@ -9,8 +9,8 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const username = req.body.username;
-    // todo - need some kind of hashing for the user's password obv
     const password = req.body.password;
+    // todo - need some kind of hashing for the user's password obv
     const newUser = new User({username, password});
 
     newUser.save()
