@@ -64,6 +64,7 @@ const PolyominoCanvasControls = styled.div`
 const PolyominoMovementControls = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 10px auto;
 `;
 

@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
-import FormControl from 'react-bootstrap/FormControl';
-import InputGroup from 'react-bootstrap/InputGroup';
 
 const WrapperDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`;
-
-const LoginInput = styled(InputGroup)`
-    margin: 1rem;
 `;
 
 const WelcomeInput = styled.p`
