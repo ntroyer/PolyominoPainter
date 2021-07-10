@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/PolyominoPainter/static/css/main.69eda509.chunk.css",
+    "main.js": "/PolyominoPainter/static/js/main.a35e9e1e.chunk.js",
+    "main.js.map": "/PolyominoPainter/static/js/main.a35e9e1e.chunk.js.map",
+    "runtime-main.js": "/PolyominoPainter/static/js/runtime-main.0923c59f.js",
+    "runtime-main.js.map": "/PolyominoPainter/static/js/runtime-main.0923c59f.js.map",
+    "static/css/2.8163d445.chunk.css": "/PolyominoPainter/static/css/2.8163d445.chunk.css",
+    "static/js/2.20393885.chunk.js": "/PolyominoPainter/static/js/2.20393885.chunk.js",
+    "static/js/2.20393885.chunk.js.map": "/PolyominoPainter/static/js/2.20393885.chunk.js.map",
+    "index.html": "/PolyominoPainter/index.html",
+    "precache-manifest.728a445f8672cb2851838c3d1befd8b4.js": "/PolyominoPainter/precache-manifest.728a445f8672cb2851838c3d1befd8b4.js",
+    "service-worker.js": "/PolyominoPainter/service-worker.js",
+    "static/css/2.8163d445.chunk.css.map": "/PolyominoPainter/static/css/2.8163d445.chunk.css.map",
+    "static/css/main.69eda509.chunk.css.map": "/PolyominoPainter/static/css/main.69eda509.chunk.css.map",
+    "static/js/2.20393885.chunk.js.LICENSE.txt": "/PolyominoPainter/static/js/2.20393885.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0923c59f.js",
+    "static/css/2.8163d445.chunk.css",
+    "static/js/2.20393885.chunk.js",
+    "static/css/main.69eda509.chunk.css",
+    "static/js/main.a35e9e1e.chunk.js"
+  ]
+}
