@@ -71,6 +71,7 @@ const Controls = styled.div`
     padding: 10px;
     width: 24rem;
     background-color: #e9ecef;
+    box-shadow: 0 1px 4px #e9ecef;
 `;
 
 export default class BrushControls extends Component {

@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { polyominos } from '../data/polyominos';
-import axios from 'axios';
 
 import Board from "./board/board.component";
 import BrushControls from "./brush-controls/brush-controls.component";
 import ImagePreview from "./image-preview/image-preview.component";
-import Login from "./login/login.component";
 
 const Crudbar = styled.div`
     height: 56px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #bfbfbf;
+    background-color: #a6d0e1;
     padding: 10px;
+    font-size: 32px;
 `;
 
 const WorkspaceDiv = styled.div`
@@ -22,6 +21,7 @@ const WorkspaceDiv = styled.div`
     justify-content: space-between;
     position: absolute;
     top: 56px;
+    height: 100%;
     left: 0;
     right: 0;
     bottom: 0;
@@ -98,7 +98,6 @@ export default class Workspace extends Component {
         this.toggleColorSelector = this.toggleColorSelector.bind(this);
         this.toggleFill = this.toggleFill.bind(this);
         this.newImage = this.newImage.bind(this);
-        this.saveImage = this.saveImage.bind(this);
         this.resetCanvas = this.resetCanvas.bind(this);
     }
 
@@ -123,8 +122,6 @@ export default class Workspace extends Component {
         }
 
         localStorage.setItem('polyo', JSON.stringify(polyo));
-        // localStorage.setItem('polyohist', JSON.stringify(history.concat([polyo])));
-        // localStorage.setItem('polyostep', this.state.currentPolyoStep + 1);
         localStorage.setItem('selectablepolyos', JSON.stringify(polyos));
 
         this.setState(state => ({
@@ -145,8 +142,6 @@ export default class Workspace extends Component {
         const history = this.state.canvasHistory.slice(0, this.state.canvasStep + 1);
 
         localStorage.setItem('canvas', JSON.stringify(squares));
-        // localStorage.setItem('canvashist', JSON.stringify(history.concat([squares])));
-        // localStorage.setItem('canvasstep', this.state.canvasStep + 1);
 
         this.setState(state => ({
             canvas: squares,
@@ -264,7 +259,6 @@ export default class Workspace extends Component {
     }
 
     newImage() {
-        // todo - add an are you sure prompt?
         this.resetCanvas();
     }
 
@@ -274,35 +268,6 @@ export default class Workspace extends Component {
             canvasHistory: [{}],
             canvasStep: 0
         }));
-    }
-
-    loadImage() {
-        console.log('load image coming soon...');
-    }
-
-    saveImage(number, canvas) {
-        // todo - doesn't work, need to figure out why
-        let image = {
-            canvas: canvas,
-            position_id: number,
-            user_id: this.state.currentUserId
-        }
-
-        axios.post('http://localhost:5000/images/add', image)
-            .then(res => console.log(res.data))
-            .catch(err => console.log('error saving image...', err));
-    }
-
-    login() {
-        console.log('logging in...');
-    }
-
-    logout() {
-        console.log('logging out...');
-    }
-
-    createAccount() {
-        console.log('coming soon...');
     }
 
     changeMyImages(images) {
@@ -322,12 +287,6 @@ export default class Workspace extends Component {
             <div>
                 <Crudbar>
                     Polyomino Painter
-                    <Login 
-                        username={this.state.currentUser}
-                        onLogin={this.login}
-                        onLogout={this.logout}
-                        onNewAccount={this.createAccount}
-                    />
                 </Crudbar>
                 <WorkspaceDiv>
                     <BrushControls 
@@ -381,7 +340,6 @@ export default class Workspace extends Component {
                         myimageop={this.state.myimageop}
                         onCanvasChange={this.changeCanvas}
                         onMyImageOpChange={this.changeMyImageOp}
-                        onImageSave={this.saveImage}
                     />
                 </WorkspaceDiv>
             </div>

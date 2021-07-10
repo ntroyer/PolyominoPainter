@@ -7,6 +7,7 @@ import MyImage from './my-image/my-image.component';
 const ImagePreviewCanvas = styled.div`
     width: 24rem;
     background-color: #e9ecef;
+    box-shadow: 0 1px 4px #e9ecef;
     padding: 10px;
 `;
 
@@ -22,8 +23,7 @@ export default class ImagePreview extends Component {
                 myimages={this.props.myimages}
                 myimageop={this.props.myimageop}
                 maincanvas={this.props.canvas} 
-                onCanvasChange={this.props.onCanvasChange}
-                onImageSave={this.props.onImageSave} ></MyImage>
+                onCanvasChange={this.props.onCanvasChange} ></MyImage>
         )
     }
 

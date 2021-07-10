@@ -37,7 +37,6 @@ export default class Board extends Component {
     constructor(props) {
         super();
 
-        // todo - isMouseDown should probably be moved to the main component
         this.state = {
             currentComputedPolyo: [-1, -1],
             isMouseDown: false
